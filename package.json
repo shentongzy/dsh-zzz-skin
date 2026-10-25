@@ -1,0 +1,42 @@
+{
+  "name": "dsh-zzz-skin",
+  "version": "0.2.1",
+  "description": "绝区零（Zenless Zone Zero）H.D.D. 风格皮肤：深海军蓝底、巨大的螺旋虹膜 + 亮瞳孔、青光扫描线与四角 HUD 边框，并把界面改名成 Fairy。用 /skin 开关。",
+  "keywords": [
+    "dsh",
+    "dsh-plugin",
+    "deepseek-harness",
+    "cordis",
+    "theme",
+    "skin",
+    "zenless-zone-zero"
+  ],
+  "type": "module",
+  "main": "lib/index.js",
+  "exports": {
+    ".": "./lib/index.js",
+    "./client": "./lib/client.js",
+    "./cordis.patch.yml": "./cordis.patch.yml",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "lib",
+    "assets/emblem.png",
+    "cordis.patch.yml",
+    "README.zh.md"
+  ],
+  "license": "MIT",
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "platform": "web",
+      "immediately": true,
+      "inject": []
+    }
+  }
+}

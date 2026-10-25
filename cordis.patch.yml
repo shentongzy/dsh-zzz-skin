@@ -1,0 +1,5 @@
+# dsh-zzz-skin 的 bundle patch —— 把皮肤插件挂进 DSH 配置树。
+
+- insert:
+    - id: dsh-zzz-skin
+      name: 'dsh-zzz-skin'

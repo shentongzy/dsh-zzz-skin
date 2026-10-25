@@ -1,0 +1,422 @@
+<!doctype html><html><head><meta charset="utf-8"><title>emblem</title>
+<style>
+  html,body{margin:0;height:100%;background:#01040a;}
+</style><style id="zzz-hdd-hud-style">/* =============================================================================
+ * dsh-zzz-skin —— Fairy 皮肤
+ *
+ *   1. 背景：正交网格线（一横一竖），很淡，只给「格子世界」的底噪；
+ *   2. 左下角：Fairy 本人的光圈徽记，压在不放内容的角落、名字上方。
+ *
+ * 徽记的比例全部来自对参考图（1012×750）的径向剖面测量，见 lib/index.js
+ * 里 buildEmblem() 的注释。配色也是实测：
+ *   底        #01040a
+ *   暗宝蓝    #042a71 / #0a2a5e
+ *   亮蓝      #3f93d9 / #2a73b4
+ *   亮青带    #2c76b6
+ *   淡紫带    #a0b0d5
+ *   暖白      #e8dbda
+ *
+ * 这个文件是「皮肤数据」：宿主与客户端两侧都按 mtime 从磁盘读它，
+ * 改完存盘 + 重启应用就生效。
+ * ========================================================================== */
+
+html:root {
+  --dsw-alias-bg-base: #01040a !important;
+  --dsw-alias-bg-layer-1: #061128 !important;
+  --dsw-alias-bg-layer-2: #0a1c3a !important;
+  --dsw-alias-bg-overlay: #071429 !important;
+  --dsw-alias-border-l1: #12305c !important;
+  --dsw-alias-border-l2: #1d4a86 !important;
+  --dsw-alias-brand-primary: #3f93d9 !important;
+  --dsw-alias-label-primary: #e8e6ee !important;
+  --dsw-alias-label-secondary: #8fa3c4 !important;
+  --dsw-alias-state-error-primary: #ff5c72 !important;
+  --dsw-alias-state-idle-primary: #5b6f8f !important;
+  --dsw-alias-state-success-primary: #46d3a4 !important;
+  --dsw-alias-state-warn-primary: #f2c14e !important;
+  --dsw-specific-sidebar-fill: #01030a !important;
+}
+
+html,
+body {
+  background-color: #01040a;
+}
+body {
+  color: #e8e6ee;
+}
+::selection {
+  background: rgba(63, 147, 217, 0.35);
+  color: #f2f7ff;
+}
+*:focus-visible {
+  outline: 1px solid rgba(63, 147, 217, 0.75) !important;
+  outline-offset: 1px;
+}
+*::-webkit-scrollbar {
+  width: 9px;
+  height: 9px;
+}
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+*::-webkit-scrollbar-thumb {
+  background: #12305c;
+  border-radius: 0;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+*::-webkit-scrollbar-thumb:hover {
+  background: #1d4a86;
+  background-clip: padding-box;
+}
+
+/* ---------------------------------------------------------------- 浮层骨架 */
+#zzz-hdd-hud {
+  position: fixed;
+  inset: 0;
+  z-index: 2147483000;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+/* 天空：左下一点冷雾 + 四周压黑 */
+#zzz-hdd-hud .fairy-sky {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(70% 70% at 16% 78%, rgba(14, 47, 99, 0.4) 0%, rgba(14, 47, 99, 0.1) 46%, rgba(1, 4, 10, 0) 74%),
+    radial-gradient(120% 100% at 50% 50%, rgba(1, 4, 10, 0) 30%, rgba(1, 4, 10, 0.45) 72%, rgba(1, 4, 10, 0.85) 100%);
+}
+
+/* ================================ 背景：正交网格线 */
+/* 一横一竖，纯 CSS，不占节点；四周渐隐免得像张坐标纸 */
+#zzz-hdd-hud .fairy-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    repeating-linear-gradient(to right, rgba(96, 158, 226, 0.11) 0 1px, transparent 1px 72px),
+    repeating-linear-gradient(to bottom, rgba(96, 158, 226, 0.11) 0 1px, transparent 1px 72px);
+  mask-image: radial-gradient(115% 110% at 50% 50%, #000 0 30%, rgba(0, 0, 0, 0.55) 62%, transparent 92%);
+  -webkit-mask-image: radial-gradient(115% 110% at 50% 50%, #000 0 30%, rgba(0, 0, 0, 0.55) 62%, transparent 92%);
+}
+
+/* ================================ 光圈徽记（左下角，名字上方） */
+/* 侧栏宽度：徽记按它水平居中。真实侧栏更宽/更窄时改这一个数即可。 */
+#zzz-hdd-hud {
+  --fairy-sidebar: 320px;
+}
+#zzz-hdd-hud .fairy-emblem {
+  position: absolute;
+  left: calc(var(--fairy-sidebar) / 2);
+  bottom: 92px;
+  width: 264px;
+  height: 264px;
+  transform: translateX(-50%);
+  opacity: 0.96;
+}
+
+/* 徽记本体：从参考图裁出来的位图，带径向 alpha 淡出 */
+#zzz-hdd-hud .fairy-glyph {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+/* 外发光：宽雾 + 紧芯 */
+#zzz-hdd-hud .fairy-bloom {
+  position: absolute;
+  inset: 6%;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle at 50% 50%,
+    rgba(58, 143, 217, 0.28) 0%,
+    rgba(26, 91, 156, 0.13) 38%,
+    rgba(9, 47, 117, 0) 72%
+  );
+  mix-blend-mode: screen;
+}
+#zzz-hdd-hud .fairy-bloom--tight {
+  inset: 22%;
+  background: radial-gradient(
+    circle at 50% 50%,
+    rgba(120, 190, 245, 0.3) 0%,
+    rgba(58, 143, 217, 0.12) 46%,
+    rgba(9, 47, 117, 0) 76%
+  );
+}
+
+#zzz-hdd-hud .fairy-mark {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  /* 参考图是柔和的 CG 渲染，不是矢量插画：整体轻微失焦才不「硬」 */
+  filter: blur(0.5px) drop-shadow(0 0 14px rgba(58, 143, 217, 0.6)) drop-shadow(0 0 46px rgba(26, 91, 156, 0.5));
+}
+
+/* 宽暗宝蓝环：径向渐变，靠内偏亮 */
+#zzz-hdd-hud .fairy-mark-ring {
+  fill: url(#fairy-ring-fill);
+}
+/* ① 那圈深蓝色圆环：独立一层，明显比暗底亮 —— 三角就是「长」在它上面 */
+#zzz-hdd-hud .fairy-mark-inner-ring {
+  fill: none;
+  stroke: #1d5fa8;
+}
+/* ② 从环上长出来的 4 个正三角：底压在环上、尖朝外 */
+#zzz-hdd-hud .fairy-mark-blades path {
+  fill: #04122b;
+  stroke: none;
+  opacity: 0.62;
+  filter: blur(0.8px);
+}
+/* 外圈亮晕 */
+/* 外圈亮带：参考图在 1.50–1.72R 之间有一整圈 lum≈120 的亮带，
+   不是一条细线。这里用加粗 + 模糊的描边做出那道带子。 */
+#zzz-hdd-hud .fairy-mark-halo {
+  fill: none;
+  stroke: rgba(58, 130, 205, 0.5);
+  stroke-width: 7;
+  filter: blur(2.6px);
+}
+/* 白环外侧那道亮蓝硬边 */
+#zzz-hdd-hud .fairy-mark-rim {
+  fill: none;
+  stroke: #6fb8f0;
+  stroke-width: 0.7;
+}
+/* 厚暖白环：实测 lum≈233 */
+#zzz-hdd-hud .fairy-mark-white {
+  fill: #f0e7e5;
+}
+/* 淡紫蓝带：实测 lum≈195 */
+#zzz-hdd-hud .fairy-mark-lilac {
+  fill: #c6d2ea;
+}
+/* 白环内侧的高光细边 */
+#zzz-hdd-hud .fairy-mark-edge {
+  fill: none;
+  stroke: #d6e4f8;
+  stroke-width: 0.42;
+  opacity: 0.9;
+}
+/* 亮青带：参考图里这圈明显比淡紫带更蓝更亮，别画丢了 */
+#zzz-hdd-hud .fairy-mark-cyan {
+  fill: #2f74b4;
+}
+/* 中心宝蓝圆盘 */
+#zzz-hdd-hud .fairy-mark-disc {
+  fill: url(#fairy-disc-fill);
+}
+/* 偏右下的大白点：带一圈冷光，像在发光 */
+#zzz-hdd-hud .fairy-mark-dot {
+  fill: #f0e9e7;
+  filter: drop-shadow(0 0 4px rgba(176, 224, 255, 0.9)) drop-shadow(0 0 12px rgba(90, 170, 240, 0.55));
+}
+
+/* ================================ 器件感 */
+#zzz-hdd-hud .fairy-scan {
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(to bottom, rgba(190, 220, 255, 0.014) 0 1px, transparent 1px 6px);
+}
+
+/* 四角 HUD 边框：贴边，永远不压在控件上 */
+#zzz-hdd-hud .fairy-frame {
+  position: absolute;
+  inset: 8px;
+  color: rgba(63, 147, 217, 0.28);
+}
+#zzz-hdd-hud .fairy-frame i {
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  border: 1px solid currentColor;
+}
+#zzz-hdd-hud .fairy-frame i:nth-child(1) {
+  top: 0;
+  left: 0;
+  border-right: 0;
+  border-bottom: 0;
+}
+#zzz-hdd-hud .fairy-frame i:nth-child(2) {
+  top: 0;
+  right: 0;
+  border-left: 0;
+  border-bottom: 0;
+}
+#zzz-hdd-hud .fairy-frame i:nth-child(3) {
+  bottom: 0;
+  left: 0;
+  border-right: 0;
+  border-top: 0;
+}
+#zzz-hdd-hud .fairy-frame i:nth-child(4) {
+  bottom: 0;
+  right: 0;
+  border-left: 0;
+  border-top: 0;
+}
+
+/* ================================================================
+ * 让它动起来
+ *
+ * 说明：动图在传输时被压平成单帧了，所以我看到的只有静图。这里实现的
+ * 是这类 H.D.D. 徽记通行的四段运动，全部可单独关掉：
+ *   1. 呼吸 —— 整枚徽记与他外发光缓慢明暗（4.8s）
+ *   2. 转叶 —— 暗环里那 4 个三角楔块缓慢自转（28s，几乎察觉不到但会「活」）
+ *   3. 瞳孔 —— 白点轻微呼吸 + 游移（5.6s）
+ *   4. 掠光 —— 一道浅光扫过整枚徽记（7s）
+ * ================================================================ */
+
+/* 表面纹理：位图本身已经带扫描质感，这里只再补一点点，别叠双份 */
+#zzz-hdd-hud .fairy-emblem::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background-image:
+    repeating-linear-gradient(to bottom, rgba(220, 240, 255, 0.02) 0 1px, transparent 1px 2px);
+  mix-blend-mode: overlay;
+  opacity: 0.25;
+  pointer-events: none;
+}
+
+/* 1. 呼吸 */
+#zzz-hdd-hud .fairy-emblem {
+  animation: fairy-breathe 4.8s ease-in-out infinite;
+}
+@keyframes fairy-breathe {
+  0%,
+  100% {
+    opacity: 0.9;
+    transform: translateX(-50%) scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: translateX(-50%) scale(1.014);
+  }
+}
+#zzz-hdd-hud .fairy-bloom {
+  animation: fairy-glow 4.8s ease-in-out infinite;
+}
+@keyframes fairy-glow {
+  0%,
+  100% {
+    opacity: 0.72;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+/* 2. 转叶：只转那组三角，白环与瞳孔不动 */
+#zzz-hdd-hud .fairy-mark-blades {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: fairy-spin 28s linear infinite;
+}
+@keyframes fairy-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* 3. 瞳孔：轻微呼吸 + 游移 */
+#zzz-hdd-hud .fairy-mark-dot {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: fairy-pupil 5.6s ease-in-out infinite;
+}
+@keyframes fairy-pupil {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: translate(-1.2px, -0.9px) scale(1.05);
+    opacity: 0.94;
+  }
+}
+
+/* 4. 掠光：一道斜向浅光周期性扫过 */
+#zzz-hdd-hud .fairy-emblem::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: linear-gradient(115deg, transparent 38%, rgba(190, 230, 255, 0.16) 50%, transparent 62%);
+  background-size: 260% 260%;
+  animation: fairy-sweep 7s ease-in-out infinite;
+  pointer-events: none;
+}
+@keyframes fairy-sweep {
+  0%,
+  100% {
+    background-position: 130% 0%;
+    opacity: 0;
+  }
+  45% {
+    opacity: 1;
+  }
+  60% {
+    background-position: -30% 0%;
+    opacity: 0;
+  }
+}
+
+/* 尊重系统的「减少动态效果」 */
+@media (prefers-reduced-motion: reduce) {
+  #zzz-hdd-hud .fairy-emblem,
+  #zzz-hdd-hud .fairy-bloom,
+  #zzz-hdd-hud .fairy-mark-blades,
+  #zzz-hdd-hud .fairy-mark-dot,
+  #zzz-hdd-hud .fairy-emblem::before {
+    animation: none;
+  }
+}
+</style></head><body><style>
+  #zzz-hdd-hud .fairy-emblem{
+    left:50%; top:50%; bottom:auto; width:600px; height:600px;
+    transform:translate(-50%,-50%); opacity:1; animation:none !important;
+  }
+  #zzz-hdd-hud .fairy-emblem::before{display:none;}
+  #zzz-hdd-hud .fairy-grid{display:none;}
+  #zzz-hdd-hud .fairy-mark-blades,
+  #zzz-hdd-hud .fairy-mark-dot{animation:none !important;}
+</style><div id="zzz-hdd-hud" aria-hidden="true">
+<div class="fairy-sky"></div>
+<div class="fairy-grid"></div>
+<div class="fairy-emblem">
+  <div class="fairy-bloom"></div>
+  <div class="fairy-bloom fairy-bloom--tight"></div>
+  <img class="fairy-glyph" src="file:///C:/Users/YZY/Documents/deepseek-harness/default-workspace/dsh-zzz-skin/assets/emblem.png" alt="" draggable="false">
+</div>
+<div class="fairy-scan"></div>
+<div class="fairy-frame"><i></i><i></i><i></i><i></i></div>
+</div><script id="zzz-hdd-hud-rename">(function(){
+  var FROM="DeepSeek Harness", TO="Fairy";
+  function fixTitle(){
+    if(document.title && document.title.indexOf(FROM)>=0){
+      document.title=document.title.split(FROM).join(TO);
+    }
+  }
+  function fixNodes(){
+    var w=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT,null);
+    var n, hits=[];
+    while((n=w.nextNode())){ if(n.nodeValue && n.nodeValue.trim()===FROM) hits.push(n); }
+    for(var i=0;i<hits.length;i++){ hits[i].nodeValue=TO; }
+  }
+  function run(){ fixTitle(); fixNodes(); }
+  try{
+    var t=null;
+    new MutationObserver(function(){ if(t)clearTimeout(t); t=setTimeout(run,120); })
+      .observe(document.documentElement,{childList:true,subtree:true});
+    run();
+  }catch(e){}
+})();</script></body></html>

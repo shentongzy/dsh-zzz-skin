@@ -1,0 +1,1141 @@
+<!doctype html>
+<html data-windows-titlebar>
+<head>
+<meta charset="utf-8">
+<title>harness</title>
+<style id="app-css">._2H3hWW_root{--dsh-sidebar-inline-padding:12px;height:100%;padding:6px var(--dsh-sidebar-inline-padding);box-sizing:border-box;background:var(--dsw-specific-sidebar-fill);color:var(--dsw-alias-label-primary);--dsh-scrollbar-thumb:var(--dsw-alias-scrollbar-bg-l2);--dsh-scrollbar-thumb-hover:var(--dsw-alias-scrollbar-hover-l2);flex-direction:column;font-size:14px;display:flex}[data-platform=darwin] ._2H3hWW_root{background:0 0}._2H3hWW_root._2H3hWW_collapsed{padding:18px 10px 6px}[data-windows-titlebar] ._2H3hWW_root ._2H3hWW_logoRow{height:40px;margin:0;padding:0}[data-windows-titlebar] ._2H3hWW_toggle{top:calc((var(--dsh-windows-titlebar-height) - 28px) / 2);z-index:30;-webkit-app-region:no-drag;position:fixed;left:12px}[data-windows-titlebar] ._2H3hWW_root._2H3hWW_collapsed ._2H3hWW_logoRow{height:0}[data-windows-titlebar] ._2H3hWW_root:not(._2H3hWW_collapsed) ._2H3hWW_brand{padding-left:4px}[data-windows-titlebar] ._2H3hWW_brandIdentity{transform:translateY(1px)}[data-windows-titlebar] ._2H3hWW_brandMark{transform:translate(1px)}[data-windows-titlebar] ._2H3hWW_brandName{font-weight:400}[data-windows-titlebar] ._2H3hWW_root._2H3hWW_collapsed{padding:0}[data-windows-titlebar] ._2H3hWW_root:not(._2H3hWW_collapsed) ._2H3hWW_newSession{margin-top:8px;margin-left:0}[data-windows-titlebar] ._2H3hWW_collapsed ._2H3hWW_panelList,[data-windows-titlebar] ._2H3hWW_collapsed ._2H3hWW_regionArea,[data-windows-titlebar] ._2H3hWW_collapsed ._2H3hWW_footArea{display:none}html[data-windows-titlebar]:has([data-sidebar-collapsed=true]){--dsh-windows-menu-start:84px}[data-windows-titlebar] ._2H3hWW_collapsed ._2H3hWW_newSession{top:calc((var(--dsh-windows-titlebar-height) - 28px) / 2);z-index:30;-webkit-app-region:no-drag;border:none;margin:0;padding:0;position:fixed;left:48px}[data-windows-titlebar] ._2H3hWW_railIn ._2H3hWW_iconButton,[data-windows-titlebar] ._2H3hWW_railIn ._2H3hWW_newSession{animation:none}[data-windows-titlebar] ._2H3hWW_collapsed ._2H3hWW_toggle,[data-windows-titlebar] ._2H3hWW_collapsed ._2H3hWW_newSession{corner-shape:round;width:28px;height:28px;color:var(--dsw-alias-label-secondary);border-radius:50%}[data-windows-titlebar] ._2H3hWW_collapsed ._2H3hWW_toggle ._2H3hWW_panelIcon{display:inline}._2H3hWW_root._2H3hWW_quietBars{--dsh-scrollbar-thumb:transparent;--dsh-scrollbar-thumb-hover:transparent}._2H3hWW_fading>*{opacity:0;transition:opacity .15s var(--ds-ease-in-out)}._2H3hWW_wide{animation:_2H3hWW_wide-in .2s var(--ds-ease-in-out)}@keyframes _2H3hWW_wide-in{0%{opacity:0}}._2H3hWW_railIn ._2H3hWW_iconButton,._2H3hWW_railIn ._2H3hWW_newSession,._2H3hWW_railIn ._2H3hWW_panelList,._2H3hWW_railIn ._2H3hWW_regionArea{animation:_2H3hWW_rail-in .15s var(--ds-ease-in-out) backwards}._2H3hWW_railIn ._2H3hWW_footArea{animation:_2H3hWW_rail-fade-in .15s var(--ds-ease-in-out) backwards}@keyframes _2H3hWW_rail-in{0%{opacity:0;transform:translate(49px)}}@keyframes _2H3hWW_rail-fade-in{0%{opacity:0}}._2H3hWW_topStrip{box-sizing:border-box;height:52px;margin:-6px calc(-1 * var(--dsh-sidebar-inline-padding)) 0;flex:none;justify-content:flex-end;align-items:center;padding:0 12px 2px;display:flex}[data-fullscreen] ._2H3hWW_topStrip{justify-content:flex-start}._2H3hWW_topStrip+._2H3hWW_logoRow{margin-top:-12px}._2H3hWW_logoRow{box-sizing:border-box;flex:none;justify-content:flex-end;align-items:center;gap:8px;height:60px;margin-bottom:4px;padding:8px 0 8px 4px;display:flex;overflow:hidden}._2H3hWW_collapsed ._2H3hWW_logoRow{justify-content:flex-start;height:36px;margin-bottom:12px;padding:0;overflow:visible}._2H3hWW_brand{min-width:0;color:inherit;cursor:pointer;background:0 0;border:none;flex:1;align-items:center;padding:0;display:inline-flex;overflow:hidden}[data-platform=darwin] ._2H3hWW_brand{cursor:default}._2H3hWW_brandIdentity{align-items:center;gap:8px;min-width:0;height:24px;display:inline-flex}._2H3hWW_brandMark{flex:none;justify-content:center;align-items:center;display:inline-flex}._2H3hWW_brandName{letter-spacing:.04em;align-items:center;gap:6px;min-width:0;height:24px;font-size:18px;font-weight:600;line-height:24px;display:inline-flex}._2H3hWW_fallbackBrandName{letter-spacing:0;white-space:nowrap;font-size:17px}._2H3hWW_localBuildBrand{white-space:nowrap;flex-direction:column;flex:none;justify-content:center;align-items:flex-start;gap:1px;height:24px;display:inline-flex}._2H3hWW_localBuildTitle{letter-spacing:0;font-size:12px;line-height:13px}._2H3hWW_iconButton{border-radius:var(--dsw-radius-sm);cursor:pointer;width:28px;height:28px;color:var(--dsw-alias-label-secondary);background:0 0;border:none;flex:none;justify-content:center;align-items:center;padding:0;display:inline-flex;position:relative}._2H3hWW_iconButton:hover{background:var(--dsw-alias-interactive-bg-hover)}._2H3hWW_iconButton._2H3hWW_toggle:focus-visible{outline:var(--dsw-focus-ring-width) solid var(--dsw-focus-ring-color,var(--dsw-alias-state-business-primary));outline-offset:-2px}._2H3hWW_collapsed ._2H3hWW_iconButton{border-radius:var(--dsw-radius-md);width:36px;height:36px}._2H3hWW_collapsed ._2H3hWW_toggle ._2H3hWW_panelIcon{display:none}._2H3hWW_collapsed ._2H3hWW_toggle:hover ._2H3hWW_panelIcon{display:inline}._2H3hWW_collapsed ._2H3hWW_toggle:hover ._2H3hWW_railMark{display:none}._2H3hWW_railMark{justify-content:center;align-items:center;display:inline-flex}._2H3hWW_collapsed ._2H3hWW_iconButton{color:var(--dsw-alias-label-primary)}._2H3hWW_buildVersion{height:10px;color:var(--dsw-alias-label-primary-inverted);background:var(--dsw-alias-label-primary);font-family:var(--ds-font-family-code);white-space:nowrap;border-radius:2px;flex:none;align-items:center;padding:0 3px;font-size:6px;font-weight:500;line-height:10px;display:inline-flex}._2H3hWW_newSession{box-sizing:border-box;border:.5px solid var(--dsw-alias-border-l3);border-radius:var(--dsw-radius-md);background:var(--dsw-alias-button-elevated-fill);height:38px;color:var(--dsw-alias-label-primary);cursor:pointer;flex:none;justify-content:center;align-items:center;gap:0;margin:0 2px 12px;padding:8px 12px;font-size:14px;font-weight:500;line-height:22px;display:flex;position:relative;overflow:hidden;container-type:inline-size}._2H3hWW_newSession:hover{background:var(--dsw-alias-button-floating-hover)}[data-platform=darwin] ._2H3hWW_newSession{background:#ffffff8c}[data-platform=darwin] ._2H3hWW_newSession:hover{background:#ffffff4d}[data-platform=darwin] [data-ds-dark-theme] ._2H3hWW_newSession{background:#ffffff26}[data-platform=darwin] [data-ds-dark-theme] ._2H3hWW_newSession:hover{background:#fff3}._2H3hWW_collapsed ._2H3hWW_newSession{background:0 0;border-color:#0000;align-self:flex-start;gap:0;width:36px;height:36px;margin:0 0 12px;padding:0}._2H3hWW_collapsed ._2H3hWW_newSession:hover{background:var(--dsw-alias-interactive-bg-hover)}._2H3hWW_newSessionLabel{white-space:nowrap;max-width:200px;overflow:hidden}._2H3hWW_collapsed ._2H3hWW_newSessionLabel{max-width:0}._2H3hWW_newSessionLabelMask{flex:1;min-width:0}._2H3hWW_newSession:is(:hover,:focus-visible) ._2H3hWW_newSessionLabelMask:has(+._2H3hWW_newSessionShortcut){overflow:hidden;mask-image:linear-gradient(90deg,#000 calc(100% - 16px),#0000)}._2H3hWW_newSessionContent{justify-content:center;align-items:center;gap:6px;width:100cqw;display:flex}._2H3hWW_newSessionContent>svg{flex:none}._2H3hWW_newSessionShortcut{opacity:0;pointer-events:none;flex:none;font-weight:400;display:inline-flex}._2H3hWW_newSession:is(:hover,:focus-visible) ._2H3hWW_newSessionShortcut{opacity:1}._2H3hWW_panelList{flex-direction:column;flex:none;gap:4px;margin-bottom:8px;display:flex}._2H3hWW_panelRow{box-sizing:border-box;border-radius:var(--dsw-radius-md);min-height:36px;color:var(--dsw-alias-label-primary);font:inherit;text-align:left;cursor:pointer;background:0 0;border:none;align-items:center;gap:8px;margin:0 2px;padding:7px 8px;line-height:22px;display:flex}._2H3hWW_panelRow:hover{background:var(--dsw-alias-interactive-bg-hover)}._2H3hWW_panelRow._2H3hWW_panelActive{background:var(--dsw-alias-interactive-bg-hover);color:var(--dsw-alias-label-primary)}._2H3hWW_panelRow:focus-visible{outline:var(--dsw-focus-ring-width) solid var(--dsw-focus-ring-color,var(--dsw-alias-state-business-primary));outline-offset:-2px}._2H3hWW_panelGlyph{flex:none;justify-content:center;align-items:center;display:inline-flex}._2H3hWW_panelTitle{text-overflow:ellipsis;white-space:nowrap;min-width:0;overflow:hidden}._2H3hWW_collapsed ._2H3hWW_panelList{gap:12px;margin-bottom:12px}._2H3hWW_collapsed ._2H3hWW_panelRow{width:36px;height:36px;color:var(--dsw-alias-label-primary);justify-content:center;margin:0;padding:0}._2H3hWW_regionArea{min-height:0;margin-left:-4px;margin-right:calc(-1 * var(--dsh-sidebar-inline-padding));flex-direction:column;flex:1;padding-left:4px;display:flex;overflow:hidden}._2H3hWW_collapsed ._2H3hWW_regionArea{margin-left:0;margin-right:0;padding-left:0}._2H3hWW_footArea{flex-direction:column;flex:none;display:flex}._2H3hWW_settingsArea,._2H3hWW_footerActions{flex:none;width:100%;min-width:0}._2H3hWW_footerActions{display:flex}._2H3hWW_collapsed ._2H3hWW_footArea{align-items:center}._2H3hWW_collapsed ._2H3hWW_settingsArea,._2H3hWW_collapsed ._2H3hWW_footerActions{justify-content:center;width:auto;display:flex}@media (prefers-reduced-motion:reduce){._2H3hWW_wide,._2H3hWW_fading>*,._2H3hWW_railIn ._2H3hWW_iconButton,._2H3hWW_railIn ._2H3hWW_newSession,._2H3hWW_railIn ._2H3hWW_panelList,._2H3hWW_railIn ._2H3hWW_footArea,._2H3hWW_railIn ._2H3hWW_regionArea{transition:none;animation:none}}
+:root{--dsh-windows-titlebar-height:40px;--dsw-specific-sidebar-fill:#01030a;--dsw-alias-label-primary:#e8e6ee;--dsw-alias-bg-base:#01040a;--dsw-alias-label-secondary:#8fa3c4;--dsw-radius-sm:6px;--dsw-radius-md:10px;--ds-ease-in-out:cubic-bezier(.4,0,.2,1)}
+html,body{margin:0;height:100%;background:#01040a;color:#e8e6ee;font:14px/1.4 system-ui,'Segoe UI',sans-serif}
+/* 复刻 dsh-client-ui-layout 的 Windows 标题栏：所有列上方先让出 40px */
+[data-windows-titlebar] .BynINW_frame{box-sizing:border-box;padding-top:var(--dsh-windows-titlebar-height);height:100%}
+</style>
+</head>
+<body>
+<div class="BynINW_frame" style="display:flex;height:100%;padding-top:40px;box-sizing:border-box">
+  <div class="side" style="width:280px;flex:0 0 auto;height:100%">
+    <div class="_2H3hWW_root _2H3hWW_quietBars" id="root" style="width:280px">
+      <div class="_2H3hWW_logoRow" data-window-drag="true" id="logoRow">
+        <button type="button" class="_2H3hWW_brand _2H3hWW_wide" id="brandBtn" aria-label="新建会话">
+          <span class="_2H3hWW_brandIdentity" aria-hidden="true">
+            <span class="_2H3hWW_brandMark"><svg class="fish" width="24" height="24" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="#4d6bfe"/></svg></span>
+            <span class="_2H3hWW_brandName"><svg class="wordmark" width="132" height="22" viewBox="0 0 132 22"><text x="0" y="17" font-size="18" fill="#e8e6ee">DeepSeek</text></svg></span>
+          </span>
+        </button>
+        <button type="button" class="_2H3hWW_iconButton _2H3hWW_toggle" id="toggle" aria-label="收起侧边栏">
+          <svg class="_2H3hWW_panelIcon" width="16" height="16" viewBox="0 0 16 16"><path d="M2 3h12M2 8h7M2 13h12" stroke="currentColor" stroke-width="1.5"/></svg>
+        </button>
+      </div>
+      <button type="button" class="_2H3hWW_newSession" style="margin-top:8px">新建会话</button>
+      <div class="_2H3hWW_panelList" style="flex:1;overflow-y:auto;padding:8px 0">
+        <div style="height:60px">会话 A</div><div style="height:60px">会话 B</div>
+      </div>
+    </div>
+  </div>
+  <div class="content" style="flex:1;overflow-y:auto;padding:24px">正文</div>
+</div>
+<script>
+  window.__beacons = []
+  window.__ModuleLoader__ = { load: ({ factory }) => { window.__plugin = factory() } }
+  window.fetch = async (url, opts) => {
+    const u = String(url)
+    // #disabled 模拟 /skin off 之后的真机：宿主说皮肤关着
+    const disabled = location.hash === '#disabled'
+    if (u.includes('/zzz-skin/status')) {
+      return new Response(JSON.stringify({ enabled: !disabled }), { status: 200, headers: { 'content-type': 'application/json' } })
+    }
+    if (disabled) return new Response('', { status: 204 })
+    if (u.includes('payload.js')) {
+      // #nopayload 模拟「皮肤载荷还没到」的首帧现场：请求永远挂着
+      if (location.hash === '#nopayload') return new Promise(() => {})
+      return new Response("{\"css\":\"/* =============================================================================\\n * dsh-zzz-skin —— Fairy 皮肤\\n *\\n *   1. 背景：正交网格线（一横一竖），很淡，只给「格子世界」的底噪；\\n *   2. 左下角：Fairy 本人的光圈徽记，压在不放内容的角落、名字上方。\\n *\\n * 徽记的比例全部来自对参考图（1012×750）的径向剖面测量，见 lib/index.js\\n * 里 buildEmblem() 的注释。配色也是实测：\\n *   底        #01040a\\n *   暗宝蓝    #042a71 / #0a2a5e\\n *   亮蓝      #3f93d9 / #2a73b4\\n *   亮青带    #2c76b6\\n *   淡紫带    #a0b0d5\\n *   暖白      #e8dbda\\n *\\n * 这个文件是「皮肤数据」：宿主与客户端两侧都按 mtime 从磁盘读它，\\n * 改完存盘 + 重启应用就生效。\\n * ========================================================================== */\\n\\nhtml:root {\\n  --dsw-alias-bg-base: #051a4a !important;\\n  --dsw-alias-bg-layer-1: #0b2350 !important;\\n  --dsw-alias-bg-layer-2: #0a1c3a !important;\\n  --dsw-alias-bg-overlay: #071429 !important;\\n  --dsw-alias-border-l1: #12305c !important;\\n  --dsw-alias-border-l2: #1d4a86 !important;\\n  --dsw-alias-brand-primary: #3f93d9 !important;\\n  --dsw-alias-label-primary: #e8e6ee !important;\\n  --dsw-alias-label-secondary: #8fa3c4 !important;\\n  --dsw-alias-state-error-primary: #ff5c72 !important;\\n  --dsw-alias-state-idle-primary: #5b6f8f !important;\\n  --dsw-alias-state-success-primary: #46d3a4 !important;\\n  --dsw-alias-state-warn-primary: #f2c14e !important;\\n  --dsw-specific-sidebar-fill: #04163f !important;\\n}\\n\\nhtml,\\nbody {\\n  background-color: #01040a;\\n}\\nbody {\\n  color: #e8e6ee;\\n}\\n::selection {\\n  background: rgba(63, 147, 217, 0.35);\\n  color: #f2f7ff;\\n}\\n*:focus-visible {\\n  outline: 1px solid rgba(63, 147, 217, 0.75) !important;\\n  outline-offset: 1px;\\n}\\n*::-webkit-scrollbar {\\n  width: 9px;\\n  height: 9px;\\n}\\n*::-webkit-scrollbar-track {\\n  background: transparent;\\n}\\n*::-webkit-scrollbar-thumb {\\n  background: #12305c;\\n  border-radius: 0;\\n  border: 2px solid transparent;\\n  background-clip: padding-box;\\n}\\n*::-webkit-scrollbar-thumb:hover {\\n  background: #1d4a86;\\n  background-clip: padding-box;\\n}\\n\\n/* ---------------------------------------------------------------- 浮层骨架 */\\n#zzz-hdd-hud {\\n  position: fixed;\\n  inset: 0;\\n  z-index: 2147483000;\\n  pointer-events: none;\\n  overflow: hidden;\\n}\\n\\n/* 天空：左下一点冷雾 + 四周压黑 */\\n#zzz-hdd-hud .fairy-sky {\\n  position: absolute;\\n  inset: 0;\\n  /* 注意：这层是全屏遮罩，颜色必须是**新底色系**，否则会把 --dsw-alias-bg-base\\n     整个盖掉（之前边缘 0.85 的近黑遮罩，让背景令牌怎么改都看不出变化）。 */\\n  background:\\n    /* 左下那团蓝色雾气：范围放大（70%→135%），渐隐拉长，让它铺满下半屏而不是只裹着徽记 */\\n    radial-gradient(135% 115% at 14% 84%, rgba(28, 88, 175, 0.42) 0%, rgba(22, 72, 150, 0.26) 28%, rgba(14, 48, 110, 0.12) 52%, rgba(5, 26, 74, 0) 80%),\\n    radial-gradient(120% 100% at 50% 50%, rgba(5, 26, 74, 0) 32%, rgba(4, 20, 60, 0.3) 74%, rgba(3, 14, 44, 0.55) 100%);\\n}\\n\\n/* ================================ 背景：正交网格线 */\\n/* 一横一竖，纯 CSS，不占节点；四周渐隐免得像张坐标纸 */\\n#zzz-hdd-hud .fairy-grid {\\n  position: absolute;\\n  inset: 0;\\n  background-image:\\n    /* 格子 60px；线色保持原来的淡蓝，不动它（只调了背景色） */\\n    repeating-linear-gradient(to right, rgba(96, 158, 226, 0.11) 0 1px, transparent 1px 60px),\\n    repeating-linear-gradient(to bottom, rgba(96, 158, 226, 0.11) 0 1px, transparent 1px 60px);\\n  mask-image: radial-gradient(115% 110% at 50% 50%, #000 0 30%, rgba(0, 0, 0, 0.55) 62%, transparent 92%);\\n  -webkit-mask-image: radial-gradient(115% 110% at 50% 50%, #000 0 30%, rgba(0, 0, 0, 0.55) 62%, transparent 92%);\\n}\\n\\n/* ================================ 光圈徽记（左下角，名字上方） */\\n/* 侧栏宽度：徽记按它水平居中。真实侧栏更宽/更窄时改这一个数即可。 */\\n#zzz-hdd-hud {\\n  --fairy-sidebar: 320px;\\n}\\n/* 徽记的位置与大小由客户端按真实侧边栏几何写进内联样式；\\n   这里的值只是「客户端还没跑起来时」的兜底。\\n   --fairy-sidebar 仍然保留：侧栏宽度变化时它是兜底居中的依据。 */\\n/* 位置与缩放由客户端按真实侧边栏几何写进内联样式。\\n   基准尺寸固定 280（= 客户端的 REF），实际大小靠 transform: scale ——\\n   只走合成器，不触发布局，所以拖拽时才跟手。\\n   transform-origin 放在底边中点：缩放时底边不动，徽记不会上下漂。 */\\n#zzz-hdd-hud .fairy-emblem {\\n  position: absolute;\\n  left: calc(var(--fairy-sidebar) / 2);\\n  bottom: 92px;\\n  width: 280px;\\n  height: 280px;\\n  transform: translateX(-50%) scale(1);\\n  transform-origin: 0% 100%;\\n  opacity: 0.96;\\n  transition: transform 0.22s ease, opacity 0.22s ease;\\n  will-change: transform, opacity;\\n}\\n\\n/* 徽记三层位图：外壳 / 内环 / 眼珠。三层同尺寸，叠起来就是原图。 */\\n#zzz-hdd-hud .fairy-layer {\\n  position: absolute;\\n  inset: 0;\\n  width: 100%;\\n  height: 100%;\\n  display: block;\\n  user-select: none;\\n  -webkit-user-drag: none;\\n  transform-origin: 50% 50%;\\n}\\n/* 眼珠不绕画面中心缩放，而是绕它自己的圆心 —— 否则放大时会跑位 */\\n#zzz-hdd-hud .fairy-layer--eye {\\n  transform-origin: 54.96% 58.18%;\\n}\\n\\n/* 外发光：宽雾 + 紧芯。\\n   位图的外沿已经被裁成干净的正圆（不规则的那圈光被切掉了），所以环境光\\n   由这里补齐：宽的一层往外扩 26%，模糊 12px，screen 混合 —— 目的是让徽记\\n   \\\"化\\\"进深色背景，而不是一块贴在界面上的贴纸。 */\\n#zzz-hdd-hud .fairy-bloom {\\n  position: absolute;\\n  inset: -12%;\\n  border-radius: 50%;\\n  background: radial-gradient(\\n    circle at 50% 50%,\\n    rgba(74, 165, 235, 0.34) 0%,\\n    rgba(48, 124, 196, 0.22) 34%,\\n    rgba(24, 74, 148, 0.1) 58%,\\n    rgba(9, 47, 117, 0) 76%\\n  );\\n  filter: blur(9px);\\n  mix-blend-mode: screen;\\n}\\n#zzz-hdd-hud .fairy-bloom--tight {\\n  inset: 4%;\\n  opacity: 0.92;\\n  background: radial-gradient(\\n    circle at 50% 50%,\\n    rgba(150, 210, 250, 0.22) 0%,\\n    rgba(70, 150, 222, 0.12) 48%,\\n    rgba(9, 47, 117, 0) 74%\\n  );\\n  filter: blur(7px);\\n  mix-blend-mode: screen;\\n}\\n\\n\\n/* 宽暗宝蓝环：径向渐变，靠内偏亮 */\\n/* ① 那圈深蓝色圆环：独立一层，明显比暗底亮 —— 三角就是「长」在它上面 */\\n/* ② 从环上长出来的 4 个正三角：底压在环上、尖朝外 */\\n/* 外圈亮晕 */\\n/* 外圈亮带：参考图在 1.50–1.72R 之间有一整圈 lum≈120 的亮带，\\n   不是一条细线。这里用加粗 + 模糊的描边做出那道带子。 */\\n/* 白环外侧那道亮蓝硬边 */\\n/* 厚暖白环：实测 lum≈233 */\\n/* 淡紫蓝带：实测 lum≈195 */\\n/* 白环内侧的高光细边 */\\n/* 亮青带：参考图里这圈明显比淡紫带更蓝更亮，别画丢了 */\\n/* 中心宝蓝圆盘 */\\n/* 偏右下的大白点：带一圈冷光，像在发光 */\\n\\n/* ================================ 器件感 */\\n#zzz-hdd-hud .fairy-scan {\\n  position: absolute;\\n  inset: 0;\\n  background: repeating-linear-gradient(to bottom, rgba(190, 220, 255, 0.014) 0 1px, transparent 1px 6px);\\n}\\n\\n/* 四角 HUD 边框：贴边，永远不压在控件上 */\\n#zzz-hdd-hud .fairy-frame {\\n  position: absolute;\\n  inset: 8px;\\n  color: rgba(63, 147, 217, 0.28);\\n}\\n#zzz-hdd-hud .fairy-frame i {\\n  position: absolute;\\n  width: 24px;\\n  height: 24px;\\n  border: 1px solid currentColor;\\n}\\n#zzz-hdd-hud .fairy-frame i:nth-child(1) {\\n  top: 0;\\n  left: 0;\\n  border-right: 0;\\n  border-bottom: 0;\\n}\\n#zzz-hdd-hud .fairy-frame i:nth-child(2) {\\n  top: 0;\\n  right: 0;\\n  border-left: 0;\\n  border-bottom: 0;\\n}\\n#zzz-hdd-hud .fairy-frame i:nth-child(3) {\\n  bottom: 0;\\n  left: 0;\\n  border-right: 0;\\n  border-top: 0;\\n}\\n#zzz-hdd-hud .fairy-frame i:nth-child(4) {\\n  bottom: 0;\\n  right: 0;\\n  border-left: 0;\\n  border-top: 0;\\n}\\n\\n/* ================================================================\\n * 让它动起来\\n *\\n * 说明：动图在传输时被压平成单帧了，所以我看到的只有静图。这里实现的\\n * 是这类 H.D.D. 徽记通行的四段运动，全部可单独关掉：\\n *   1. 呼吸 —— 整枚徽记与他外发光缓慢明暗（4.8s）\\n *   2. 转叶 —— 暗环里那 4 个三角楔块缓慢自转（28s，几乎察觉不到但会「活」）\\n *   3. 瞳孔 —— 白点轻微呼吸 + 游移（5.6s）\\n *   4. 掠光 —— 一道浅光扫过整枚徽记（7s）\\n * ================================================================ */\\n\\n/* 表面纹理：位图本身已带扫描质感，这里只补一点点，别叠双份 */\\n#zzz-hdd-hud .fairy-emblem::after {\\n  content: '';\\n  position: absolute;\\n  inset: 0;\\n  border-radius: 50%;\\n  background-image: repeating-linear-gradient(to bottom, rgba(220, 240, 255, 0.02) 0 1px, transparent 1px 2px);\\n  mix-blend-mode: overlay;\\n  opacity: 0.2;\\n  pointer-events: none;\\n}\\n\\n/* ================================ 动效（三层）\\n *   .fairy-layer--outer  暗环 + 四个三角 + 光晕  → 旋转\\n *   .fairy-layer--core   紫带 / 青带 / 中心盘 / 眼珠 → 呼吸，往外涨\\n *   .fairy-layer--ring   白环本体               → **不动**，是锚点\\n *\\n * 白环不动、core 放大，而且 ring 在 DOM 里排在 core 之后（压在上面），\\n * 所以 core 涨出去的部分被白环裁掉：紫带闭合成缝、青带贴到白环内沿，\\n * 而白环与更外圈的暗环一动不动 —— 永远不可能\\\"超出外一圈\\\"。\\n * ================================================================ */\\n\\n/* 外壳：转。18s 一圈 */\\n#zzz-hdd-hud .fairy-layer--outer {\\n  animation: fairy-spin 18s linear infinite;\\n  will-change: transform;\\n}\\n@keyframes fairy-spin {\\n  to {\\n    transform: rotate(360deg);\\n  }\\n}\\n\\n/* 内芯：呼吸。1 → 1.32，涨出去的部分被白环盖住 */\\n#zzz-hdd-hud .fairy-layer--core {\\n  animation: fairy-breathe 5.5s ease-in-out infinite;\\n  will-change: transform;\\n}\\n@keyframes fairy-breathe {\\n  0%,\\n  100% {\\n    transform: scale(1);\\n  }\\n  50% {\\n    transform: scale(1.32);\\n  }\\n}\\n\\n/* 白环：锚点，只负责遮住 core 涨出来的部分 */\\n#zzz-hdd-hud .fairy-layer--ring {\\n  animation: none;\\n}\\n\\n/* 外发光跟着呼吸，幅度小 */\\n#zzz-hdd-hud .fairy-bloom {\\n  animation: fairy-glow 5.5s ease-in-out infinite;\\n}\\n@keyframes fairy-glow {\\n  0%,\\n  100% {\\n    opacity: 0.7;\\n  }\\n  50% {\\n    opacity: 1;\\n  }\\n}\\n\\n/* 尊重系统的「减少动态效果」 */\\n@media (prefers-reduced-motion: reduce) {\\n  #zzz-hdd-hud .fairy-layer,\\n  #zzz-hdd-hud .fairy-bloom {\\n    animation: none;\\n  }\\n}\\n\\n/* ================================ 品牌标记（左上角）\\n   把应用自带的 DeepSeek 图标换成静态大眼睛。\\n   - 图标是位图裁出来的，不需要动效，所以这里不挂任何 animation；\\n   - 用 object-fit 保证圆度，外加一点点暗底上的对比度补偿。\\n   ================================================================ */\\n.zzz-brand-mark {\\n  display: block;\\n  width: 38px;\\n  height: 38px;\\n  object-fit: contain;\\n  border-radius: 50%;\\n  flex: 0 0 auto;\\n  /* 图标提亮。不用 drop-shadow：filter 会按元素盒绘制，透明边缘提亮后\\n     会浮出一圈矩形光带，所以光晕交给文字那边，图标只提亮。 */\\n  filter: brightness(1.45) saturate(1.1);\\n}\\n\\n/* 品牌行：原图标与字标被 visibility:hidden 遮住，这里叠上自己的 */\\n[data-zzz-brand] {\\n  position: relative;\\n}\\n.zzz-brand-overlay {\\n  position: absolute;\\n  inset: 0;\\n  z-index: 2;\\n  display: flex;\\n  align-items: center;\\n  gap: 10px;\\n  overflow: hidden; /* 侧栏收成 0 高的那一帧，别让 38px 的图标从行外溢出来 */\\n  pointer-events: none;\\n}\\n.zzz-brand-name {\\n  font: 650 20px/1 ui-sans-serif, 'Segoe UI', system-ui, sans-serif;\\n  letter-spacing: 0.02em;\\n  color: #ffffff;\\n  text-shadow: 0 0 6px rgba(200, 232, 255, 0.9), 0 0 18px rgba(96, 168, 245, 0.6);\\n  white-space: nowrap;\\n}\\n\\n\\n/* 品牌：把官方字标从第一帧就藏掉。\\n   官方结构（dsh-client-ui-sidebar / SidebarRoot）：\\n\\n     div._logoRow\\n       ├ button._brand          ← 热区是\\\"新建会话\\\"，按钮本身必须留着\\n       │   └ span._brandIdentity\\n       │       ├ span._brandMark  → 官方鱼标 svg\\n       │       └ span._brandName  → DeepSeek 字标 svg\\n       └ button._iconButton._toggle   ← 折叠开关，里面那枚 svg 就是按钮图案\\n\\n   所以只藏 _brandIdentity：它同时包住鱼标和字标，又不在折叠按钮内部。\\n   —— 早先的规则藏了 logoRow 下所有 svg / img，折叠按钮的图标正好中招，\\n      于是\\\"按钮还在，图案没了\\\"；而 React 重新挂载品牌行时那条 JS 隐藏\\n      还没来得及补上，字标就闪了一帧。CSS 兜底没有这一帧问题。 */\\n[class*=\\\"_brandIdentity\\\"],\\n[class*=\\\"_brand\\\"] > svg,\\n[class*=\\\"_brand\\\"] > img:not(.zzz-brand-mark) {\\n  visibility: hidden !important;\\n}\\n/* 品牌文字块：名字 + 一行小字（全名） */\\n.zzz-brand-text {\\n  display: flex;\\n  flex-direction: column;\\n  justify-content: center;\\n  /* 品牌行高 40px：20 + 间距 + 11 = 38，刚好装下且不压「新对话」 */\\n  gap: 7px;\\n  line-height: 1;\\n}\\n.zzz-brand-sub {\\n  font: 600 10px/1.1 ui-sans-serif, 'Segoe UI', system-ui, sans-serif;\\n  letter-spacing: 0.06em;\\n  color: #eaf4ff;\\n  white-space: nowrap;\\n  text-shadow: 0 0 6px rgba(170, 215, 255, 0.8), 0 0 14px rgba(80, 150, 230, 0.5);\\n}\\n/* ================================ 示波器扫线（薄雾版）\\n   一片很淡的光带自上而下降落。为了不显眼，这里刻意把亮度压到接近\\n   肉眼阈值：峰值 alpha 只有 0.02，同时把厚度拉到 200px —— \\n   单位面积上的亮度更低，读起来是\\\"背景在缓缓呼吸\\\"，不是\\\"一道光扫过\\\"。\\n   节奏：24s 一轮，前 60%（约 14s）落下，其余静止。\\n   ================================================================ */\\n#zzz-hdd-hud .fairy-sky::after {\\n  content: '';\\n  position: absolute;\\n  left: 0;\\n  right: 0;\\n  top: 0;\\n  height: 200px;\\n  background: linear-gradient(\\n    to bottom,\\n    rgba(90, 160, 230, 0) 0%,\\n    rgba(90, 160, 230, 0.005) 48%,\\n    rgba(120, 190, 255, 0.012) 78%,\\n    rgba(170, 214, 255, 0.022) 95%,\\n    rgba(205, 236, 255, 0) 100%\\n  );\\n  mask-image: linear-gradient(to right, transparent 0%, #000 24%, #000 76%, transparent 100%);\\n  -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 24%, #000 76%, transparent 100%);\\n  opacity: 0;\\n  animation: fairy-beam 24s linear infinite;\\n  will-change: transform, opacity;\\n  pointer-events: none;\\n}\\n\\n#zzz-hdd-hud .fairy-sky::before {\\n  content: none;\\n}\\n\\n@keyframes fairy-beam {\\n  0% {\\n    transform: translateY(-200px);\\n    opacity: 0;\\n  }\\n  5% {\\n    transform: translateY(-200px);\\n    opacity: 1;\\n  }\\n  60% {\\n    transform: translateY(100vh);\\n    opacity: 1;\\n  }\\n  64% {\\n    transform: translateY(100vh);\\n    opacity: 0;\\n  }\\n  100% {\\n    transform: translateY(100vh);\\n    opacity: 0;\\n  }\\n}\\n\\n@media (prefers-reduced-motion: reduce) {\\n  #zzz-hdd-hud .fairy-sky::after {\\n    animation: none;\\n    opacity: 0;\\n  }\\n}\\n\\n/* ================================ 空白会话主视觉（纯文字）\\n   眼睛不再单独渲染：左下角那枚徽记会滑到主视觉位置，全界面只有一枚。\\n   这里只负责文字，并且由浅到深、错峰淡入。\\n   ================================================================ */\\n\\n/* 应用自己的标题块：整块隐掉，同时预留高度，让输入框自己往下让 */\\n[class*=\\\"Hqq-bq_headline\\\"] {\\n  opacity: 0 !important;\\n  pointer-events: none !important;\\n  min-height: clamp(320px, 56vh, 520px) !important;\\n}\\n\\n.fairy-hero {\\n  position: absolute;\\n  display: none;\\n  flex-direction: column;\\n  align-items: center;\\n  transform: translateX(-50%);\\n  pointer-events: none;\\n  z-index: 4;\\n}\\n\\n/* 淡入：整块先透明，加 .is-on 后三层文字错峰浮现。\\n   延迟按 client.js 的 SWIM_MS（1200ms）排：眼睛先游上来，文字在它快落定时才起 ——\\n   否则眼睛会从正在淡入的标题上横穿过去，那一眼很难看。改 SWIM_MS 记得同步这两个数。 */\\n.fairy-hero .zzz-hero-title,\\n.fairy-hero .zzz-hero-rule,\\n.fairy-hero .zzz-hero-echo {\\n  opacity: 0;\\n  transform: translateY(10px);\\n}\\n.fairy-hero.is-on .zzz-hero-title {\\n  animation: hero-in 0.62s cubic-bezier(0.22, 0.61, 0.36, 1) 1.02s forwards;\\n}\\n.fairy-hero.is-on .zzz-hero-rule {\\n  animation: hero-in 0.62s cubic-bezier(0.22, 0.61, 0.36, 1) 1.16s forwards;\\n}\\n.fairy-hero.is-on .zzz-hero-echo {\\n  animation: hero-in 0.72s cubic-bezier(0.22, 0.61, 0.36, 1) 1.3s forwards;\\n}\\n\\n@keyframes hero-in {\\n  from {\\n    opacity: 0;\\n    transform: translateY(10px);\\n  }\\n  to {\\n    opacity: 1;\\n    transform: translateY(0);\\n  }\\n}\\n\\n.fairy-hero .zzz-hero-title {\\n  font-family: 'Archivo Black', 'Arial Black', 'Segoe UI', system-ui, sans-serif;\\n  font-weight: 900;\\n  font-size: 40px;\\n  line-height: 1;\\n  color: #ffffff;\\n  text-align: center;\\n  white-space: nowrap;\\n}\\n\\n.fairy-hero .zzz-hero-rule {\\n  display: flex;\\n  align-items: center;\\n  gap: 14px;\\n  width: 92%;\\n  margin-top: 10px;\\n}\\n.fairy-hero .zzz-hero-rule i {\\n  flex: 1 1 auto;\\n  height: 1px;\\n  background: linear-gradient(to right, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.5));\\n}\\n.fairy-hero .zzz-hero-rule i:last-child {\\n  background: linear-gradient(to left, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.5));\\n}\\n.fairy-hero .zzz-hero-rule span {\\n  font-weight: 600;\\n  font-size: 13px;\\n  letter-spacing: 0.62em;\\n  padding-left: 0.62em;\\n  color: #dbe6f5;\\n  white-space: nowrap;\\n}\\n\\n.fairy-hero .zzz-hero-echo {\\n  display: flex;\\n  flex-direction: column;\\n  align-items: center;\\n  gap: 2px;\\n  margin-top: 8px;\\n}\\n.fairy-hero .zzz-hero-echo b {\\n  display: block;\\n  font-family: 'Archivo Black', 'Arial Black', 'Segoe UI', system-ui, sans-serif;\\n  font-weight: 900;\\n  font-size: 40px;\\n  line-height: 1;\\n  white-space: nowrap;\\n  color: #7f93b8;\\n}\\n.fairy-hero .zzz-hero-echo b:nth-child(1) {\\n  opacity: 0.34;\\n  filter: blur(0.4px);\\n}\\n.fairy-hero .zzz-hero-echo b:nth-child(2) {\\n  opacity: 0.18;\\n  filter: blur(1.2px);\\n  transform: scaleY(0.92);\\n}\\n.fairy-hero .zzz-hero-echo b:nth-child(3) {\\n  opacity: 0.09;\\n  filter: blur(2.2px);\\n  transform: scaleY(0.86);\\n}\\n\",\"html\":\"<div id=\\\"zzz-hdd-hud\\\" aria-hidden=\\\"true\\\">\\n<div class=\\\"fairy-sky\\\"></div>\\n<div class=\\\"fairy-grid\\\"></div>\\n<div class=\\\"fairy-emblem\\\">\\n  <div class=\\\"fairy-bloom\\\"></div>\\n  <div class=\\\"fairy-bloom fairy-bloom--tight\\\"></div>\\n  <img class=\\\"fairy-layer fairy-layer--outer\\\" src=\\\"/zzz-skin/emblem.png?v=0&l=outer\\\" alt=\\\"\\\" draggable=\\\"false\\\">\\n  <img class=\\\"fairy-layer fairy-layer--core\\\" src=\\\"/zzz-skin/emblem.png?v=0&l=core\\\" alt=\\\"\\\" draggable=\\\"false\\\">\\n  <img class=\\\"fairy-layer fairy-layer--ring\\\" src=\\\"/zzz-skin/emblem.png?v=0&l=ring\\\" alt=\\\"\\\" draggable=\\\"false\\\">\\n</div>\\n<div class=\\\"fairy-scan\\\"></div>\\n<div class=\\\"fairy-frame\\\"><i></i><i></i><i></i><i></i></div>\\n</div>\",\"renameFrom\":\"DeepSeek Harness\",\"renameTo\":\"Fairy\"}", { status: 200, headers: { 'content-type': 'application/json' } })
+    }
+    if (u.includes('beacon')) {
+      try { window.__beacons.push(JSON.parse(opts && opts.body)) } catch {}
+      return new Response('', { status: 204 })
+    }
+    return new Response('', { status: 404 })
+  }
+</script>
+<script>/**
+ * dsh-zzz-skin 的浏览器半边。
+ *
+ * 三件事：
+ *   1. 装皮肤载荷，并每 2 秒轮询 payload —— 改 CSS 存盘就生效，不用重启应用。
+ *   2. 把徽记钉在侧边栏上：水平居中、随栏宽伸缩、收起时收进侧边、列表溢出时缩一档。
+ *   3. beacon 回传探测数据给宿主，写进 zzz-skin.log。
+ *
+ * 性能要点（之前"不跟手、掉帧"的原因）：
+ *   · findSidebar 会遍历整棵 DOM 并读 computed style —— 改成带缓存的 resolveSidebar，
+ *     只在缓存元素失效时才重新扫描；
+ *   · 尺寸变化走 transform: scale（合成器），不走 width/height（触发布局）；
+ *   · 拖拽期间关掉过渡，缩放严格跟着光标；松手 220ms 后才恢复缓动。
+ */
+window.__ModuleLoader__.load({
+  id: 'dsh-zzz-skin',
+  factory() {
+    return {
+      inject: [],
+      apply(ctx) {
+        const STYLE_ID = 'zzz-hdd-hud-style'
+        const CRITICAL_ID = 'zzz-brand-critical'
+        const ROOT_ID = 'zzz-hdd-hud'
+        const PAYLOAD = '/zzz-skin/payload.js'
+        const STATUS = '/zzz-skin/status'
+        const BEACON = '/zzz-skin/beacon'
+        const BUILD = 'brand-2026-10-25b'
+        const POLL_MS = 2000
+        const SAFETY_MS = 500
+        const COLLAPSED_W = 150
+        const REF = 280
+
+        /**
+         * 徽记有两档移动速度。
+         *
+         *   · 停靠态（拖侧栏宽度、改窗口大小）：必须跟手，0.34s。
+         *   · 主视觉那一趟：同一枚徽记从侧栏底部「游」到画面中央，1.2s 长缓出。
+         *     这一趟是入场表演，不是跟手操作 —— 之前和停靠共用 0.34s，
+         *     跨越大半个屏幕只给三分之一秒，看起来是被拽过去的，不像游过去。
+         */
+        const DOCK_MS = 340
+        const SWIM_MS = 1200
+        const DOCK_EASE = 'cubic-bezier(0.4, 0, 0.2, 1)'
+        // 慢起、长收：从角落「离港」时不弹，落定时几乎停住。纯 ease-out 一上来就把
+        // 七成距离走完了，那还是「被拽过去」的手感，只是被拉长了。
+        const SWIM_EASE = 'cubic-bezier(0.33, 0, 0.2, 1)'
+        /** 离开主视觉后这段时间内仍然用慢速，让回程也是同一趟游动。 */
+        const SWIM_TAIL_MS = SWIM_MS + 400
+
+        /**
+         * 首帧关键样式。
+         *
+         * 皮肤整套 CSS 走 /zzz-skin/payload.js，要等一次 fetch 才落地；而品牌行
+         * 是 React 在挂载时就画出来的。中间这段空窗期里，官方字标是可见的，
+         * 38px 的徽记也还没有尺寸约束（会按位图原始尺寸撑出来）—— 用户看到的
+         * "闪一下 deepseek" 就是这一帧。这里先把"藏字标 + 徽记尺寸"两条最短的
+         * 规则挂进 <head>，跟客户端模块同一时刻生效，不再受 payload 时序影响。
+         */
+        const CRITICAL_CSS = `[data-zzz-brand]{position:relative}
+[class*="_brandIdentity"]{visibility:hidden!important}
+[class*="_brand"]>svg,[class*="_brand"]>img:not(.zzz-brand-mark){visibility:hidden!important}
+.zzz-brand-overlay{position:absolute;inset:0;z-index:2;display:flex;align-items:center;gap:10px;overflow:hidden;pointer-events:none}
+.zzz-brand-mark{display:block;width:38px;height:38px;object-fit:contain;border-radius:50%;flex:0 0 auto}
+.zzz-brand-name{font:650 23px/1 ui-sans-serif,'Segoe UI',system-ui,sans-serif;letter-spacing:.02em;color:#ece0e0;white-space:nowrap}`
+
+        function installCriticalCss() {
+          if (document.getElementById(CRITICAL_ID)) return
+          const style = document.createElement('style')
+          style.id = CRITICAL_ID
+          style.textContent = CRITICAL_CSS
+          ;(document.head || document.documentElement).appendChild(style)
+        }
+
+        let lastStamp = ''
+        let lastGeometry = ''
+        let observer = null
+        let timer = null
+        let safetyTimer = null
+        let timerRename = null
+        let lastRename = { from: '', to: '' }
+        let resizeObs = null
+        let sidebarEl = null
+        let scrollEl = null
+        let layoutRaf = 0
+        let lastWidth = -1
+        let lastWidthAt = 0
+        let lastChangeAt = 0
+        let textLeftCache = 0
+        let textLeftAt = 0
+        let composerEl = null
+        let cornerHidden = false
+        let lastWinW = 0
+        let lastCornerSize = 0
+        let contentEl = null
+        let probed = false
+        let probedCorner = false
+
+        /* ------------------------------------------------------------ 工具 */
+
+        function rename(from, to) {
+          if (!from || !to) return
+          if (document.title && document.title.indexOf(from) >= 0) {
+            document.title = document.title.split(from).join(to)
+          }
+          const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, null)
+          const hits = []
+          let node
+          while ((node = walker.nextNode())) {
+            if (node.nodeValue && node.nodeValue.trim() === from) hits.push(node)
+          }
+          for (const hit of hits) hit.nodeValue = to
+        }
+
+        function report(payload) {
+          try {
+            fetch(BEACON, {
+              method: 'POST',
+              credentials: 'same-origin',
+              headers: { 'content-type': 'application/json' },
+              body: JSON.stringify(payload),
+              keepalive: true,
+            }).catch(() => {})
+          } catch {
+            /* 探针失败无所谓 */
+          }
+        }
+
+        let brandProbed = false
+        let brandAt = 0
+
+        /**
+         * 品牌行是不是"已经处理过"。
+         *
+         * MutationObserver 里不能每来一次 DOM 变动就跑一遍几何扫描——流式输出时
+         * 那等于每帧扫全树。这里只做一次便宜的 querySelector：
+         *   · 行还在、覆盖层也在 → 没事，返回 false；
+         *   · 行在、但没有 data-zzz-brand / 覆盖层 → React 刚把品牌行重新挂载
+         *     （展开侧栏就是这条路径），得立刻补一次，赶在绘制之前；
+         *   · 连行都没有 → 还没渲染出来，交给 rAF 泵去试。
+         */
+        function brandRowNeedsWork() {
+          const host = sidebarEl && sidebarEl.isConnected ? sidebarEl : document.body
+          if (!host) return false
+          const row = host.querySelector('[data-zzz-brand]')
+          if (row) return !row.querySelector('.zzz-brand-overlay')
+          return Boolean(host.querySelector('[class*="_logoRow"]'))
+        }
+
+        /**
+         * 把左上角品牌行改成「大眼睛 + Fairy」。
+         *
+         * 品牌标记本身是 sidebar.brand.mark 这个 single 槽位（现在被应用自己的 mf
+         * 占着），替换它要覆盖官方 UI；这里走 DOM 替换更稳：找到顶部那行品牌，
+         * 把图标换成静态大眼睛图，把 DeepSeek 字样换成 Fairy。React 重渲染后由
+         * MutationObserver 再叫回来一次即可。
+         */
+        function brandify(force) {
+          const now = performance.now()
+          if (!force && now - brandAt < 600) return
+          brandAt = now
+
+          // 品牌行按**几何位置**找，不靠文字：截图里左上角的 deepseek 是矢量字标
+          //（SVG 路径），根本没有文本节点，所以 /deepseek/ 永远匹配不到。
+          // 条件：侧栏内、贴左上角、高度像一行品牌、里面有 svg 或 img。
+          const host = sidebarEl && sidebarEl.isConnected ? sidebarEl : document.body
+          let best = null
+          for (const el of host.querySelectorAll('*')) {
+            if (el.closest('#zzz-hdd-hud')) continue
+            const r = el.getBoundingClientRect()
+            if (r.top > 150 || r.left > 420) continue
+            if (r.height < 18 || r.height > 64) continue
+            if (r.width < 40 || r.width > 400) continue
+            if (!el.querySelector('svg, img')) continue
+            if (el.children.length > 4) continue // 品牌行子元素很少，排除大容器
+            if (!best || r.top < best.r.top || (r.top === best.r.top && r.height > best.r.height)) {
+              best = { el, r }
+            }
+          }
+
+          if (!best) {
+            if (!brandProbed) {
+              brandProbed = true
+              const sample = []
+              for (const el of host.querySelectorAll('*')) {
+                if (el.closest('#zzz-hdd-hud')) continue
+                const r = el.getBoundingClientRect()
+                if (r.top > 150 || r.left > 420 || r.height < 10 || r.height > 70) continue
+                if (!el.querySelector('svg, img')) continue
+                sample.push({
+                  tag: el.tagName.toLowerCase(),
+                  cls: String(el.className).slice(0, 40),
+                  w: Math.round(r.width),
+                  h: Math.round(r.height),
+                  top: Math.round(r.top),
+                  kids: el.children.length,
+                })
+                if (sample.length >= 10) break
+              }
+              report({ kind: 'brand-miss2', sample })
+            }
+            return
+          }
+
+          const row = best.el
+          row.dataset.zzzBrand = '1'
+
+          // 遮住官方品牌内容，但**保护一切可交互元素**。
+          // 上一版只认 svg / img，结果 deepseek 那个字标（不是 svg）没被藏，和 Fairy 叠在一起；
+          // 而更早的版本整行全藏，连折叠按钮都没了。这里按"藏内容、留交互"来分：
+          const isInteractive = (node) =>
+            node.tagName === 'BUTTON' ||
+            node.tagName === 'A' ||
+            node.getAttribute('role') === 'button' ||
+            Boolean(node.querySelector('button, a, [role="button"]'))
+
+          /**
+           * 折叠开关。它同样是 button，但里面的 svg 就是**按钮图案本身**——
+           * 当成"交互容器"进去藏非交互子元素，等于把图标擦掉。所以整个跳过：
+           * 按模块级类名认（_toggle / _panelIcon 跟构建哈希无关，稳定），
+           * 也就不会被 URL 语言或 aria-label 文案变化带偏。
+           */
+          const isToggleControl = (node) =>
+            node.matches('[class*="_toggle"]') ||
+            Boolean(node.querySelector('[class*="_toggle"], [class*="_panelIcon"]'))
+
+          for (const child of row.children) {
+            if (child.classList.contains('zzz-brand-overlay')) continue
+            if (isToggleControl(child)) continue
+            if (isInteractive(child)) {
+              // 交互容器里只藏它自己的非交互子元素
+              for (const inner of child.children) {
+                if (isInteractive(inner) || isToggleControl(inner)) continue
+                inner.style.visibility = 'hidden'
+              }
+              continue
+            }
+            child.style.visibility = 'hidden'
+          }
+          // 叠层：大眼睛 + 「Fairy」+ 一行小字（全名）
+          const existing = row.querySelector('.zzz-brand-overlay')
+          if (existing && !existing.querySelector('.zzz-brand-sub')) existing.remove()
+          if (!row.querySelector('.zzz-brand-overlay')) {
+            const overlay = document.createElement('div')
+            overlay.className = 'zzz-brand-overlay'
+
+            const img = document.createElement('img')
+            img.className = 'zzz-brand-mark'
+            img.alt = 'Fairy'
+            img.src = '/zzz-skin/emblem.png?v=1'
+            img.draggable = false
+
+            const text = document.createElement('div')
+            text.className = 'zzz-brand-text'
+
+            const name = document.createElement('span')
+            name.className = 'zzz-brand-name'
+            name.textContent = 'Fairy'
+
+            const sub = document.createElement('span')
+            sub.className = 'zzz-brand-sub'
+            sub.textContent = 'Ⅲ型总序式集成泛用人工智能'
+
+            text.appendChild(name)
+            text.appendChild(sub)
+            overlay.appendChild(img)
+            overlay.appendChild(text)
+            row.appendChild(overlay)
+          }
+
+          if (!brandProbed) {
+            brandProbed = true
+            const ir = row.querySelector('img.zzz-brand-mark').getBoundingClientRect()
+            report({
+              kind: 'brand',
+              build: BUILD,
+              tag: row.tagName.toLowerCase(),
+              cls: String(row.className).slice(0, 60),
+              w: Math.round(best.r.width),
+              h: Math.round(best.r.height),
+              icon: [Math.round(ir.width), Math.round(ir.height)],
+            })
+          }
+        }
+
+        /* --------------------------------------------------- 找到左边那根栏 */
+
+        function looksLikeSidebar(el) {
+          if (!el || !el.isConnected) return false
+          if (el.closest('#zzz-hdd-hud')) return false // 绝不可能是自己的浮层
+          const r = el.getBoundingClientRect()
+          return r.height >= 200 && r.left <= 6 && r.width >= 48 && r.width <= 560 && r.right > 60
+        }
+
+        /** 仅在缓存失效时扫描整棵树。下限 48px 是为了认出收起后的图标条。 */
+        function resolveSidebar() {
+          if (looksLikeSidebar(sidebarEl)) return sidebarEl
+          sidebarEl = null
+          scrollEl = null
+          let bestScore = -1
+          for (const el of document.body.querySelectorAll('*')) {
+            // 跳过自己的浮层：.fairy-bloom 往左溢出成 400×400，会被误判成侧边栏
+            if (el.closest('#zzz-hdd-hud')) continue
+            const r = el.getBoundingClientRect()
+            if (r.height < 200 || r.left > 6) continue
+            if (r.width < 48 || r.width > 560) continue
+            const cs = getComputedStyle(el)
+            if (cs.position === 'fixed' || cs.display === 'none' || cs.visibility === 'hidden') continue
+            let score = Math.min(r.width, 400)
+            if (cs.borderRightWidth !== '0px') score += 400
+            if (cs.overflowY === 'auto' || cs.overflowY === 'scroll') score += 200
+            if (cs.display.indexOf('flex') >= 0) score += 150
+            if (score > bestScore) {
+              bestScore = score
+              sidebarEl = el
+            }
+          }
+          if (resizeObs && sidebarEl) resizeObs.observe(sidebarEl)
+          return sidebarEl
+        }
+
+        function resolveScroller() {
+          if (scrollEl && scrollEl.isConnected) return scrollEl
+          scrollEl = null
+          if (!sidebarEl) return null
+          let best = null
+          for (const node of sidebarEl.querySelectorAll('*')) {
+            const cs = getComputedStyle(node)
+            if (cs.overflowY !== 'auto' && cs.overflowY !== 'scroll') continue
+            if (node.getBoundingClientRect().height < 80) continue
+            if (!best || node.scrollHeight > best.scrollHeight) best = node
+          }
+          scrollEl = best
+          return best
+        }
+
+        /* ------------------------------------------------------ 摆好徽记 */
+
+        function releaseReserve() {
+          if (!scrollEl) return
+          if (scrollEl.dataset.zzzPad !== undefined) {
+            scrollEl.style.paddingBottom = scrollEl.dataset.zzzPad
+            delete scrollEl.dataset.zzzPad
+            delete scrollEl.dataset.zzzReserve
+          }
+        }
+
+        /**
+         * 摆位。缩放原点统一放在**左下角**（0% 100%），因为"缩"这件事要朝左下角收。
+         * 但原点在左边缘时，放大就会整体往右偏；所以 left 里把这部分补偿掉：
+         *
+         *   元素左边缘 = left - REF/2        （translateX(-50%)）
+         *   视觉中线   = left - REF/2 + REF*s/2
+         *   令它等于侧栏中线 → left = center + (REF/2)(1 - s)
+         *
+         * 于是竖向缩放贴着底边、横向缩放绕左边缘，中心仍然精确对齐侧栏中线。
+         */
+        function placeEmblem(emblem, { centerX, leftEdge, bottom, size, animate, ms }) {
+          // 窗口刚变过尺寸 / 侧栏刚被拖动时不做过渡，严格跟手
+          if (performance.now() - lastChangeAt < 280) animate = false
+          const scale = size / REF
+          // 原点在左边缘 → 视觉左沿 = 元素左沿 = left - REF/2
+          // 居中模式用 centerX 补偿缩放偏移；贴边模式直接指定左沿
+          const left =
+            leftEdge !== undefined ? leftEdge + REF / 2 : centerX + (REF / 2) * (1 - scale)
+          // ms 不传就是停靠速度；只有主视觉那一趟（以及它的回程）会传 SWIM_MS
+          const duration = Number.isFinite(ms) ? ms : DOCK_MS
+          const ease = duration >= SWIM_MS ? SWIM_EASE : DOCK_EASE
+          emblem.style.transition = animate
+            ? `transform ${duration}ms ${ease}, left ${duration}ms ${ease}, bottom ${duration}ms ${ease}, opacity 0.3s ease`
+            : 'none'
+          emblem.style.transformOrigin = '0% 100%'
+          emblem.style.left = Math.round(left) + 'px'
+          emblem.style.bottom = Math.round(bottom) + 'px'
+          emblem.style.transform = `translateX(-50%) scale(${scale.toFixed(4)})`
+          emblem.style.opacity = '0.96'
+          return Math.round(size)
+        }
+
+        /** 找到正文的滚动容器（最大的、不属于侧栏的那种）。 */
+        function resolveContentScroller() {
+          if (contentEl && contentEl.isConnected) {
+            const r = contentEl.getBoundingClientRect()
+            if (r.width > 200 && r.height > 100) return contentEl
+          }
+          contentEl = null
+          let best = null
+          let bestArea = 0
+          for (const node of document.body.querySelectorAll('*')) {
+            if (node.closest('#zzz-hdd-hud')) continue
+            const cs = getComputedStyle(node)
+            if (cs.overflowY !== 'auto' && cs.overflowY !== 'scroll') continue
+            if (sidebarEl && sidebarEl.contains(node)) continue
+            const r = node.getBoundingClientRect()
+            if (r.height < window.innerHeight * 0.35) continue
+            if (r.width < 260) continue
+            const area = r.width * r.height
+            if (area > bestArea) {
+              bestArea = area
+              best = node
+            }
+          }
+          contentEl = best
+          return best
+        }
+
+        /**
+         * 正文「文字」真正从哪里开始 —— 只统计**下半部分**的文本块。
+         *
+         * 之前量的是列边框或第一层包装盒，但侧栏收起后正文列紧贴图标条开始，
+         * 算出来是 64px，减掉边距就成负数，于是判定"没位置"把眼睛藏了。
+         * 这里改成扫文本块的最小 left：会话列有边距、气泡也不顶格，
+         * 得到的才是真实可用的空白宽度。
+         */
+        function resolveTextLeft() {
+          const scroller = resolveContentScroller()
+          if (!scroller) return window.innerWidth * 0.55
+          const sr = scroller.getBoundingClientRect()
+
+          // ① 居中列的左沿（便宜、稳定）：取最宽的一级子元素
+          let wrapperLeft = sr.left
+          let widest = 0
+          for (const child of scroller.children) {
+            const r = child.getBoundingClientRect()
+            if (r.width > widest && r.width > 200) {
+              widest = r.width
+              wrapperLeft = Math.max(wrapperLeft, r.left)
+            }
+          }
+          const byWrapper = wrapperLeft + 24 // 列内边距，保守估计
+
+          // ② 实测文字左沿（较贵，但更贴边）
+          let min = Infinity
+          for (const node of scroller.querySelectorAll('*')) {
+            if (node.children.length > 0) continue // 只认叶子文本
+            if (node.closest('#zzz-hdd-hud')) continue
+            const r = node.getBoundingClientRect()
+            if (r.width < 40 || r.height < 12) continue
+            if (r.left < 1) continue
+            if (r.right > window.innerWidth) continue
+            if (r.top > sr.bottom) continue
+            const text = node.textContent
+            if (!text || !text.trim()) continue
+            if (r.left < min) min = r.left
+          }
+
+          // 两个估计取**较小**的那个：宁可把眼睛算小，也不能压到正文。
+          return Number.isFinite(min) ? Math.min(min, byWrapper) : byWrapper
+        }
+
+        /** 文字左沿带 300ms 缓存：每帧扫全树是之前掉帧的主因。 */
+        function textLeftCached() {
+          const now = performance.now()
+          if (now - textLeftAt < 300 && textLeftCache > 0) return textLeftCache
+          textLeftAt = now
+          textLeftCache = resolveTextLeft()
+          return textLeftCache
+        }
+
+        function hideEmblem(emblem) {
+          if (!emblem) return
+          emblem.style.transition = 'transform 0.3s ease, opacity 0.3s ease'
+          emblem.style.transformOrigin = '0% 100%'
+          emblem.style.transform = 'translateX(-50%) scale(0.02)'
+          emblem.style.opacity = '0'
+          releaseReserve()
+        }
+
+        /**
+         * 侧栏收起 / 找不到侧栏：挪到窗口左下角常驻。
+         *
+         * 这里的原则是**宁可见、不可藏**：默认就摆左下角，尺寸按可测到的空档走；
+         * 一旦测量结果不可信（负数、过小），就退回一个稳妥的默认尺寸，
+         * 而不是把它藏起来。只有窗口窄到 420px 以下才真的隐身。
+         */
+        /**
+         * 输入框（composer）的矩形。它比正文更靠左，是左下角徽记最容易压到的东西。
+         */
+        function resolveComposerRect() {
+          if (composerEl && composerEl.isConnected) return composerEl.getBoundingClientRect()
+          composerEl = null
+          const input = document.querySelector('textarea, [contenteditable="true"]')
+          if (!input || (sidebarEl && sidebarEl.contains(input))) return null
+          let node = input
+          for (let i = 0; i < 6; i += 1) {
+            const parent = node.parentElement
+            if (!parent || parent === document.body) break
+            const r = parent.getBoundingClientRect()
+            node = parent
+            if (r.width > 300 && r.height > 52) break
+          }
+          const r = node.getBoundingClientRect()
+          if (r.width < 200 || r.height < 40) return null
+          composerEl = node
+          return r
+        }
+
+        function dockToCorner(emblem) {
+          releaseReserve()
+          const winW = window.innerWidth
+          const winH = window.innerHeight
+          // 边距固定 10：之前用"侧栏右沿"当边距，而侧栏收起后那条右沿时有时无，
+          // 于是位置和尺寸每半秒在 10 / 120 之间来回跳。
+          const leftMargin = 10
+          const textLeft = textLeftCached()
+          // 上限 = 停靠态尺寸的 1.2 倍
+          const base = lastDockedSize || Math.round(Math.min(270 * 0.7, winH * 0.32, REF))
+          const cap = Math.min(Math.round(base * 1.2), Math.round(winH * 0.5), 460)
+
+          // 尺寸严格随可用空间走 —— **不设下限**，否则窗口变窄它就不动了。
+          // 外发光会向外扩 12%，所以盒子要按视觉尺寸反算：box <= 空档 / 1.24。
+          const GLOW = 1.24
+
+          // 左下角要避让两个东西：正文文字列、以及更靠左的输入框。
+          // 取两者中更靠近窗口的那条边作为边界。
+          const composer = resolveComposerRect()
+          const boundaries = []
+          if (textLeft > 200) boundaries.push(textLeft) // 只在可信时采用
+          if (composer && composer.left > 40) boundaries.push(composer.left)
+          // 没有任何可信边界 → 直接判定放不下。
+          // 之前这里退回 winW*0.55，是个巨大的数，于是窗口收窄时突然弹出一个大的。
+          const limitLeft = boundaries.length ? Math.min(...boundaries) : 0
+
+          let size = Math.round(Math.min(cap, (limitLeft - leftMargin) / GLOW))
+
+          // 再套两道物理约束，防"收窄时反而弹出一个大的"：
+          //   ① 尺寸不得超过窗口宽度的 12%（无论测量结果多离谱）
+          //   ② 窗口在变窄的过程中，尺寸只允许缩小，不允许变大
+          size = Math.min(size, Math.round(winW * 0.12))
+          if (winW < lastWinW && size > lastCornerSize) size = lastCornerSize
+
+          // 徽记留在真正的左下角，不往上飘
+          const bottomOffset = 18
+          // 太小就没意义了；窗口太窄也直接消失
+          if (winW < 700 || size < 60) size = 0
+          // 迟滞：一旦隐藏，只有「窗口在变大」且「尺寸够大」才重新出现。
+          // 收窄途中永远不再冒出来 —— 这正是之前"消失后又弹一个大的"的路径。
+          if (cornerHidden && (winW <= lastWinW || size < 78)) size = 0
+
+          lastWinW = winW
+          lastCornerSize = size > 0 ? size : lastCornerSize
+          cornerHidden = size === 0
+
+          const geometry = `corner:${winW}:${Math.round(textLeft)}:${size}`
+          if (geometry !== lastGeometry) {
+            lastGeometry = geometry
+            report({
+              kind: 'corner',
+              winW,
+              leftMargin,
+              textLeft: Number.isFinite(textLeft) ? Math.round(textLeft) : null,
+              composerLeft: composer ? Math.round(composer.left) : null,
+              limitLeft: Math.round(limitLeft),
+              bottomOffset,
+              cap,
+              size,
+              hidden: size === 0,
+            })
+          }
+
+          if (size === 0) {
+            currentMode = 'hidden'
+            hideEmblem(emblem)
+            return
+          }
+          currentMode = 'corner'
+
+          placeEmblem(emblem, {
+            leftEdge: leftMargin,
+            bottom: bottomOffset,
+            size,
+            animate: true,
+            ms: performance.now() - heroSwimAt < SWIM_TAIL_MS ? SWIM_MS : DOCK_MS,
+          })
+        }
+
+        /**
+         * 空白会话的主视觉：把鲸鱼换成大眼睛，并在下面挂上「空洞深潜系统」标题块。
+         * 这块是 React 渲染的，重渲染会把我们插的东西冲掉，所以带节流反复补。
+         */
+        let heroAt = 0
+        let heroWatch = null
+        let heroSeenAt = 0
+        let heroMode = false
+        /** 最后一次离开主视觉的时刻：回程在 SWIM_TAIL_MS 内仍然走慢速。 */
+        let heroSwimAt = -Infinity
+        /** 上一次摆到主视觉的几何：没变就不再写样式，免得每 120ms 重排一次过渡。 */
+        let heroPlaced = ''
+        // 启动后 6 秒内属于「恢复上次会话」的窗口期，只有这段时间才做稳定性门槛；
+        // 之后新建会话要立刻出现，不能再被门槛拖慢。
+        const bootAt = performance.now()
+        let heroProbed = false
+
+        /** 主视觉专用浮层：独立于皮肤载荷，第一帧就能建出来。 */
+        function heroLayer() {
+          let box = document.getElementById('fairy-hero-layer')
+          if (!box) {
+            box = document.createElement('div')
+            box.id = 'fairy-hero-layer'
+            box.style.cssText =
+              'position:fixed;inset:0;pointer-events:none;z-index:2147483001;overflow:visible;'
+            document.body.appendChild(box)
+          }
+          return box
+        }
+
+        /** 主视觉文字层：只有文字，眼睛由左下角那枚滑过来。 */
+        function heroLayer() {
+          let box = document.getElementById('fairy-hero-layer')
+          if (!box) {
+            box = document.createElement('div')
+            box.id = 'fairy-hero-layer'
+            box.style.cssText =
+              'position:fixed;inset:0;pointer-events:none;z-index:2147483001;overflow:visible;'
+            document.body.appendChild(box)
+          }
+          return box
+        }
+
+        /** 退出主视觉：记下时刻，好让接下来那次回程仍然用慢速。 */
+        function leaveHero() {
+          if (heroMode) heroSwimAt = performance.now()
+          heroMode = false
+          heroPlaced = ''
+        }
+
+        function heroify(force) {
+          const now = performance.now()
+          if (!force && now - heroAt < 700) return
+          heroAt = now
+
+          const box = heroLayer()
+          const headline = document.querySelector('[class*="Hqq-bq_headline"]')
+
+          let layer = box.querySelector('.fairy-hero')
+          if (!layer) {
+            layer = document.createElement('div')
+            layer.className = 'fairy-hero'
+            layer.innerHTML = `
+              <div class="zzz-hero-title">HOLLOW DEEP DIVE SYSTEM</div>
+              <div class="zzz-hero-rule"><i></i><span>空 洞 深 潜 系 统</span><i></i></div>
+              <div class="zzz-hero-echo" aria-hidden="true">
+                <b>HOLLOW DEEP DIVE SYSTEM</b>
+                <b>HOLLOW DEEP DIVE SYSTEM</b>
+                <b>HOLLOW DEEP DIVE SYSTEM</b>
+              </div>`
+            box.appendChild(layer)
+          }
+
+          const emblem = document.querySelector('#zzz-hdd-hud .fairy-emblem')
+
+          if (!headline) {
+            heroSeenAt = 0
+            leaveHero()
+            layer.classList.remove('is-on')
+            layer.style.display = 'none'
+            return
+          }
+
+          // 启动期（恢复上次会话）需要稳定性门槛
+          if (now - bootAt < 2500) {
+            if (!heroSeenAt) heroSeenAt = now
+            if (now - heroSeenAt < 250) {
+              layer.classList.remove('is-on')
+              layer.style.display = 'none'
+              return
+            }
+          }
+
+          const r = headline.getBoundingClientRect()
+          if (r.width < 40 || r.height < 20) {
+            heroSeenAt = 0
+            leaveHero()
+            layer.style.display = 'none'
+            return
+          }
+
+          // 眼睛尺寸：跟着主视觉区域走，最大 240
+          const size = Math.round(Math.min(240, Math.max(120, r.width * 0.42), window.innerHeight * 0.3))
+
+          // 把**同一枚**徽记滑到主视觉位置。这一趟是入场表演，不是跟手操作 ——
+          // 用 SWIM_MS 的慢起长收，让它「游」过来，而不是被拽过来。
+          // 几何没变就不再写：看门狗 120ms 一拍，反复写同一组值没意义，
+          // 万一量到 1px 抖动还会把 1.2s 的过渡重新计时，看起来像在飘。
+          heroMode = true
+          if (emblem) {
+            const centerX = r.left + r.width / 2
+            const bottom = window.innerHeight - (r.top + size)
+            const key = `${Math.round(centerX)}:${Math.round(bottom)}:${size}`
+            if (key !== heroPlaced) {
+              heroPlaced = key
+              placeEmblem(emblem, {
+                centerX,
+                bottom,
+                size,
+                animate: true,
+                ms: SWIM_MS,
+              })
+            }
+          }
+
+          // 文字层贴在眼睛下方
+          layer.style.display = 'flex'
+          layer.style.left = Math.round(r.left + r.width / 2) + 'px'
+          layer.style.top = Math.round(r.top + size + 20) + 'px'
+          layer.style.width = Math.round(Math.min(r.width, 760)) + 'px'
+          // 触发一次淡入（每次进入空白会话都重放）
+          if (!layer.classList.contains('is-on')) {
+            layer.classList.remove('is-on')
+            void layer.offsetWidth
+            layer.classList.add('is-on')
+          }
+
+          if (!heroProbed) {
+            heroProbed = true
+            report({
+              kind: 'hero6',
+              eye: size,
+              top: Math.round(r.top),
+              h: Math.round(r.height),
+              single: Boolean(emblem),
+            })
+          }
+        }
+
+        /** 一次性的现场快照，状态切换时发一条，方便我照着真实数字调参。 */
+        function snapshot(state) {
+          const win = [window.innerWidth, window.innerHeight]
+          const side = sidebarEl && sidebarEl.isConnected ? sidebarEl.getBoundingClientRect() : null
+          const inSide = sidebarEl && sidebarEl.isConnected ? resolveScroller() : null
+          const inSideRect = inSide ? inSide.getBoundingClientRect() : null
+          const content = contentEl && contentEl.isConnected ? contentEl.getBoundingClientRect() : null
+          report({
+            kind: 'diag',
+            state,
+            win,
+            sidebar: side
+              ? {
+                  cls: String(sidebarEl.className).slice(0, 60),
+                  left: Math.round(side.left),
+                  right: Math.round(side.right),
+                  w: Math.round(side.width),
+                  h: Math.round(side.height),
+                }
+              : null,
+            sideScroll: inSideRect
+              ? { w: Math.round(inSideRect.width), left: Math.round(inSideRect.left) }
+              : null,
+            content: content
+              ? {
+                  cls: String(contentEl.className).slice(0, 60),
+                  left: Math.round(content.left),
+                  w: Math.round(content.width),
+                }
+              : null,
+            textLeft: Math.round(resolveTextLeft()),
+          })
+        }
+
+        let lastState = ''
+        let currentMode = ''
+        // 模式迟滞：进「左下角」要窄到 150 以下，回「停靠」要宽到 190 以上，
+        // 中间这段保持现状 —— 否则侧栏收起过程中会在两种模式间反复横跳。
+        let cornerLatched = false
+        let lastDockedSize = 0
+
+        function layoutEmblem() {
+          const emblem = document.querySelector('#zzz-hdd-hud .fairy-emblem')
+          // 主视觉期间眼睛归 heroify 管，这里不要抢
+          if (heroMode) return
+          if (!emblem) return
+
+          const el = resolveSidebar()
+          const sr = el ? el.getBoundingClientRect() : null
+          const scroll = el ? resolveScroller() : null
+          const sidebarW = sr ? sr.width : 0
+
+          // 迟滞用**侧栏外壳宽度**判断，不用会话列表的宽度 ——
+          // 列表可能一时找不到，那不该被当成"侧栏收起了"。
+          if (sidebarW < 150) cornerLatched = true
+          else if (sidebarW > 190) cornerLatched = false
+
+          if (!el || cornerLatched) {
+            dockToCorner(emblem)
+            return
+          }
+
+          // 侧栏是展开的。列表一时读不到就退回到外壳尺寸，仍然按"停靠"摆位，
+          // 这样重新打开侧栏时尺寸一定会变回去，不会卡在左下角。
+          const panelW = scroll ? scroll.getBoundingClientRect().width : sidebarW
+          const anchorRect = scroll ? scroll.getBoundingClientRect() : sr
+
+          const scrollRect = anchorRect
+          let size = Math.min(panelW * 0.7, window.innerHeight * 0.32, REF)
+          const crowded = scroll ? scroll.scrollHeight - scroll.clientHeight > 0 : false
+          if (crowded) size *= 0.86
+          size = Math.max(72, Math.round(size))
+          lastDockedSize = size // 左下角的上限按它的 1.5 倍算
+
+          // 给列表底部留空间：眼睛永远压在留白里，绝不盖住会话条目
+          if (scroll) {
+            const reserve = size + 24
+            if (scroll.dataset.zzzReserve !== String(reserve)) {
+              if (scroll.dataset.zzzPad === undefined) scroll.dataset.zzzPad = scroll.style.paddingBottom || ''
+              scroll.style.paddingBottom = reserve + 'px'
+              scroll.dataset.zzzReserve = String(reserve)
+            }
+          }
+
+          const footerTop = Math.min(scrollRect.top + scrollRect.height, sr.bottom)
+
+          // 拖拽中（宽度刚变过）不加过渡，严格跟手；停下 220ms 后恢复缓动
+          const now = performance.now()
+          const measured = Math.round(panelW)
+          // 首次测到宽度不算「刚变过」。否则启动后 280ms 内进入空白会话时，
+          // 这一趟主视觉游动会被当成拖拽中的跟手摆位，直接瞬移过去 ——
+          // 表现就是「眼睛啪一下出现在中间」，谁也没看见它滑。
+          if (lastWidth < 0) {
+            lastWidth = measured
+            lastWidthAt = 0
+          } else if (measured !== lastWidth) {
+            lastWidth = measured
+            lastWidthAt = now
+            lastChangeAt = now
+          }
+          const dragging = now - lastWidthAt < 220
+
+          currentMode = 'docked'
+          cornerHidden = false // 回到停靠态，清掉左下角的隐藏迟滞
+          // 刚从主视觉退回来：这一趟回程和去程同速，别在同一秒里换两种手感
+          const swimming = now - heroSwimAt < SWIM_TAIL_MS
+          const applied = placeEmblem(emblem, {
+            centerX: scrollRect.left + panelW / 2,
+            bottom: window.innerHeight - (footerTop - 10),
+            size,
+            animate: !dragging,
+            ms: swimming ? SWIM_MS : DOCK_MS,
+          })
+
+          const geometry = `dock:${Math.round(panelW)}:${applied}:${crowded}`
+          if (geometry !== lastGeometry) {
+            lastGeometry = geometry
+            if (!probed) {
+              probed = true
+              report({
+                kind: 'sidebar',
+                cls: String(el.className).slice(0, 140),
+                panelW: Math.round(panelW),
+                height: Math.round(sr.height),
+                crowded,
+                size: applied,
+                reserve,
+              })
+            }
+          }
+        }
+
+        function scheduleLayout() {
+          if (layoutRaf) return
+          layoutRaf = requestAnimationFrame(() => {
+            layoutRaf = 0
+            try {
+              layoutEmblem()
+              try {
+                brandify()
+              } catch {
+                /* 品牌替换失败不影响布局 */
+              }
+              try {
+                heroify(true)
+              } catch {
+                /* 主视觉替换失败不影响布局 */
+              }
+              // 只在"停靠 / 左下角 / 隐身"这几种状态真的切换时打一份现场快照
+              if (currentMode !== lastState) {
+                lastState = currentMode
+                try {
+                  snapshot(currentMode)
+                } catch {
+                  /* 诊断失败不影响布局 */
+                }
+              }
+            } catch {
+              /* 布局失败保持现状，下一轮再来 */
+            }
+          })
+        }
+
+        /* --------------------------------------------------- 装卸皮肤载荷 */
+
+        function render(payload) {
+          let style = document.getElementById(STYLE_ID)
+          if (!style) {
+            style = document.createElement('style')
+            style.id = STYLE_ID
+            document.head.appendChild(style)
+          }
+          style.textContent = payload.css
+
+          const holder = document.createElement('div')
+          holder.innerHTML = payload.html ?? ''
+          const fresh = Array.from(holder.childNodes)
+
+          const old = document.getElementById(ROOT_ID)
+          if (old && old.parentNode) {
+            const parent = old.parentNode
+            for (const node of fresh) parent.insertBefore(node, old)
+            parent.removeChild(old)
+          } else {
+            for (const node of fresh) document.body.appendChild(node)
+          }
+
+          lastRename = { from: payload.renameFrom, to: payload.renameTo }
+          rename(lastRename.from, lastRename.to)
+          probed = false
+          lastGeometry = ''
+          // 浮层刚被整体重建，主视觉和品牌要马上补回来，不能等节流
+          heroAt = 0
+          brandAt = 0
+          try {
+            heroify(true)
+          } catch {
+            /* 失败等下一轮 */
+          }
+          try {
+            brandify(true)
+          } catch {
+            /* 失败等下一轮 */
+          }
+          scheduleLayout()
+        }
+
+        async function tick() {
+          let payload
+          try {
+            const response = await fetch(PAYLOAD, { credentials: 'same-origin', cache: 'no-store' })
+            if (!response.ok) return
+            payload = await response.json()
+          } catch {
+            return
+          }
+          if (!payload || typeof payload.css !== 'string' || payload.css.trim() === '') return
+          const stamp = `${payload.css.length}:${payload.css.slice(-80)}:${payload.html.length}`
+          if (stamp === lastStamp) return
+          lastStamp = stamp
+          render(payload)
+        }
+
+        // 窗口尺寸变了，正文左沿也可能变，缓存要作废
+        const onResize = () => {
+          contentEl = null
+          composerEl = null
+          textLeftAt = 0
+          lastChangeAt = performance.now()
+          scheduleLayout()
+        }
+
+        const start = () => {
+          installCriticalCss()
+          // 预热三层眼睛图像：主视觉第一次显示时如果现拉，会先出文字、后出图标。
+          for (const layerName of ['outer', 'core', 'ring']) {
+            const pre = new Image()
+            pre.src = '/zzz-skin/emblem.png?l=' + layerName
+          }
+          // 首帧就开始抢品牌位：rAF 连续试 3 秒，尽量避免先闪一下官方标记
+          let brandTries = 0
+          const brandPump = () => {
+            try {
+              brandify(true)
+            } catch {
+              /* 失败无所谓 */
+            }
+            try {
+              heroify(true)
+            } catch {
+              /* 失败无所谓 */
+            }
+            if (brandTries < 180 && !document.querySelector('[data-zzz-brand]')) {
+              brandTries += 1
+              requestAnimationFrame(brandPump)
+            }
+          }
+          requestAnimationFrame(brandPump)
+
+          // 主视觉看门狗：常驻、无节流、120ms 一次。
+          // 出现和消失都靠它，不再依赖"显示后就退出"的一次性泵。
+          heroWatch = setInterval(() => {
+            try {
+              heroify(true)
+            } catch {
+              /* 失败等下一拍 */
+            }
+            try {
+              brandify(true)
+            } catch {
+              /* 失败等下一拍 */
+            }
+          }, 120)
+
+          tick()
+          timer = setInterval(tick, POLL_MS)
+          safetyTimer = setInterval(scheduleLayout, SAFETY_MS)
+
+          resizeObs = new ResizeObserver(() => scheduleLayout())
+          resolveSidebar()
+          if (sidebarEl) resizeObs.observe(sidebarEl)
+          if (document.body) resizeObs.observe(document.body)
+
+          observer = new MutationObserver(() => {
+            if (timerRename) clearTimeout(timerRename)
+            timerRename = setTimeout(() => rename(lastRename.from, lastRename.to), 150)
+            // 品牌行被 React 重新挂载时立刻补位：这一步在微任务里跑，赶得上下一帧绘制
+            try {
+              if (brandRowNeedsWork()) brandify(true)
+            } catch {
+              /* 补位失败不影响后续布局 */
+            }
+            scheduleLayout()
+          })
+          observer.observe(document.documentElement, {
+            childList: true,
+            subtree: true,
+            attributes: true,
+            attributeFilter: ['class', 'style', 'hidden', 'aria-expanded'],
+          })
+
+          window.addEventListener('resize', onResize, { passive: true })
+          scheduleLayout()
+        }
+
+        /**
+         * 皮肤关着的时候，这个客户端半边一律不碰官方界面 ——
+         * 尤其是那条"藏官方字标"的关键样式：留着它，关掉皮肤后品牌行会变成空的。
+         * 宿主老版本没有 /zzz-skin/status 路由时按"开着"处理（fail-open）。
+         */
+        async function skinEnabled() {
+          try {
+            const response = await fetch(STATUS, { credentials: 'same-origin', cache: 'no-store' })
+            if (!response.ok) return true
+            const status = await response.json()
+            return status?.enabled !== false
+          } catch {
+            return true
+          }
+        }
+
+        skinEnabled().then((enabled) => {
+          if (!enabled) return
+          installCriticalCss()
+          if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', start, { once: true })
+          } else {
+            start()
+          }
+        })
+
+        ctx.effect(() => () => {
+          if (timer) clearInterval(timer)
+          if (heroWatch) clearInterval(heroWatch)
+          if (safetyTimer) clearInterval(safetyTimer)
+          if (timerRename) clearTimeout(timerRename)
+          if (observer) observer.disconnect()
+          if (resizeObs) resizeObs.disconnect()
+          if (layoutRaf) cancelAnimationFrame(layoutRaf)
+          window.removeEventListener('resize', onResize)
+          releaseReserve()
+          const style = document.getElementById(STYLE_ID)
+          if (style) style.remove()
+          const critical = document.getElementById(CRITICAL_ID)
+          if (critical) critical.remove()
+          const root = document.getElementById(ROOT_ID)
+          if (root) root.remove()
+        })
+      },
+    }
+  },
+})
+</script>
+<script>
+  if (!window.__plugin) throw new Error('plugin not registered')
+  window.__plugin.apply({ effect: (fn) => { fn() } })
+</script>
+</body>
+</html>

@@ -1,0 +1,457 @@
+﻿/* =============================================================================
+ * dsh-zzz-skin —— Fairy 皮肤
+ *
+ *   1. 背景：正交网格线（一横一竖），很淡，只给「格子世界」的底噪；
+ *   2. 左下角：Fairy 本人的光圈徽记，压在不放内容的角落、名字上方。
+ *
+ * 徽记的比例全部来自对参考图（1012×750）的径向剖面测量，见 lib/index.js
+ * 里 buildEmblem() 的注释。配色也是实测：
+ *   底        #01040a
+ *   暗宝蓝    #042a71 / #0a2a5e
+ *   亮蓝      #3f93d9 / #2a73b4
+ *   亮青带    #2c76b6
+ *   淡紫带    #a0b0d5
+ *   暖白      #e8dbda
+ *
+ * 这个文件是「皮肤数据」：宿主与客户端两侧都按 mtime 从磁盘读它，
+ * 改完存盘 + 重启应用就生效。
+ * ========================================================================== */
+
+html:root {
+  --dsw-alias-bg-base: #051a4a !important;
+  --dsw-alias-bg-layer-1: #0b2350 !important;
+  --dsw-alias-bg-layer-2: #0a1c3a !important;
+  --dsw-alias-bg-overlay: #071429 !important;
+  --dsw-alias-border-l1: #12305c !important;
+  --dsw-alias-border-l2: #1d4a86 !important;
+  --dsw-alias-brand-primary: #3f93d9 !important;
+  --dsw-alias-label-primary: #e8e6ee !important;
+  --dsw-alias-label-secondary: #8fa3c4 !important;
+  --dsw-alias-state-error-primary: #ff5c72 !important;
+  --dsw-alias-state-idle-primary: #5b6f8f !important;
+  --dsw-alias-state-success-primary: #46d3a4 !important;
+  --dsw-alias-state-warn-primary: #f2c14e !important;
+  --dsw-specific-sidebar-fill: #04163f !important;
+}
+
+html,
+body {
+  background-color: #01040a;
+}
+body {
+  color: #e8e6ee;
+}
+::selection {
+  background: rgba(63, 147, 217, 0.35);
+  color: #f2f7ff;
+}
+*:focus-visible {
+  outline: 1px solid rgba(63, 147, 217, 0.75) !important;
+  outline-offset: 1px;
+}
+*::-webkit-scrollbar {
+  width: 9px;
+  height: 9px;
+}
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+*::-webkit-scrollbar-thumb {
+  background: #12305c;
+  border-radius: 0;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+*::-webkit-scrollbar-thumb:hover {
+  background: #1d4a86;
+  background-clip: padding-box;
+}
+
+/* ---------------------------------------------------------------- 浮层骨架 */
+#zzz-hdd-hud {
+  position: fixed;
+  inset: 0;
+  z-index: 2147483000;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+/* 天空：左下一点冷雾 + 四周压黑 */
+#zzz-hdd-hud .fairy-sky {
+  position: absolute;
+  inset: 0;
+  /* 注意：这层是全屏遮罩，颜色必须是**新底色系**，否则会把 --dsw-alias-bg-base
+     整个盖掉（之前边缘 0.85 的近黑遮罩，让背景令牌怎么改都看不出变化）。 */
+  background:
+    /* 左下那团蓝色雾气：范围放大（70%→135%），渐隐拉长，让它铺满下半屏而不是只裹着徽记 */
+    radial-gradient(135% 115% at 14% 84%, rgba(28, 88, 175, 0.42) 0%, rgba(22, 72, 150, 0.26) 28%, rgba(14, 48, 110, 0.12) 52%, rgba(5, 26, 74, 0) 80%),
+    radial-gradient(120% 100% at 50% 50%, rgba(5, 26, 74, 0) 32%, rgba(4, 20, 60, 0.3) 74%, rgba(3, 14, 44, 0.55) 100%);
+}
+
+/* ================================ 背景：正交网格线 */
+/* 一横一竖，纯 CSS，不占节点；四周渐隐免得像张坐标纸 */
+#zzz-hdd-hud .fairy-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    /* 格子 60px；线色保持原来的淡蓝，不动它（只调了背景色） */
+    repeating-linear-gradient(to right, rgba(96, 158, 226, 0.11) 0 1px, transparent 1px 60px),
+    repeating-linear-gradient(to bottom, rgba(96, 158, 226, 0.11) 0 1px, transparent 1px 60px);
+  mask-image: radial-gradient(115% 110% at 50% 50%, #000 0 30%, rgba(0, 0, 0, 0.55) 62%, transparent 92%);
+  -webkit-mask-image: radial-gradient(115% 110% at 50% 50%, #000 0 30%, rgba(0, 0, 0, 0.55) 62%, transparent 92%);
+}
+
+/* ================================ 光圈徽记（左下角，名字上方） */
+/* 侧栏宽度：徽记按它水平居中。真实侧栏更宽/更窄时改这一个数即可。 */
+#zzz-hdd-hud {
+  --fairy-sidebar: 320px;
+}
+/* 徽记的位置与大小由客户端按真实侧边栏几何写进内联样式；
+   这里的值只是「客户端还没跑起来时」的兜底。
+   --fairy-sidebar 仍然保留：侧栏宽度变化时它是兜底居中的依据。 */
+/* 位置与缩放由客户端按真实侧边栏几何写进内联样式。
+   基准尺寸固定 280（= 客户端的 REF），实际大小靠 transform: scale ——
+   只走合成器，不触发布局，所以拖拽时才跟手。
+   transform-origin 放在底边中点：缩放时底边不动，徽记不会上下漂。 */
+#zzz-hdd-hud .fairy-emblem {
+  position: absolute;
+  left: calc(var(--fairy-sidebar) / 2);
+  bottom: 92px;
+  width: 280px;
+  height: 280px;
+  transform: translateX(-50%) scale(1);
+  transform-origin: 0% 100%;
+  opacity: 0.96;
+  transition: transform 0.22s ease, opacity 0.22s ease;
+  will-change: transform, opacity;
+}
+
+/* 徽记三层位图：外壳 / 内环 / 眼珠。三层同尺寸，叠起来就是原图。 */
+#zzz-hdd-hud .fairy-layer {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  user-select: none;
+  -webkit-user-drag: none;
+  transform-origin: 50% 50%;
+}
+/* 眼珠不绕画面中心缩放，而是绕它自己的圆心 —— 否则放大时会跑位 */
+#zzz-hdd-hud .fairy-layer--eye {
+  transform-origin: 54.96% 58.18%;
+}
+
+/* 外发光：宽雾 + 紧芯。
+   位图的外沿已经被裁成干净的正圆（不规则的那圈光被切掉了），所以环境光
+   由这里补齐：宽的一层往外扩 26%，模糊 12px，screen 混合 —— 目的是让徽记
+   "化"进深色背景，而不是一块贴在界面上的贴纸。 */
+#zzz-hdd-hud .fairy-bloom {
+  position: absolute;
+  inset: -12%;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle at 50% 50%,
+    rgba(74, 165, 235, 0.34) 0%,
+    rgba(48, 124, 196, 0.22) 34%,
+    rgba(24, 74, 148, 0.1) 58%,
+    rgba(9, 47, 117, 0) 76%
+  );
+  filter: blur(9px);
+  mix-blend-mode: screen;
+}
+#zzz-hdd-hud .fairy-bloom--tight {
+  inset: 4%;
+  opacity: 0.92;
+  background: radial-gradient(
+    circle at 50% 50%,
+    rgba(150, 210, 250, 0.22) 0%,
+    rgba(70, 150, 222, 0.12) 48%,
+    rgba(9, 47, 117, 0) 74%
+  );
+  filter: blur(7px);
+  mix-blend-mode: screen;
+}
+
+
+/* 宽暗宝蓝环：径向渐变，靠内偏亮 */
+/* ① 那圈深蓝色圆环：独立一层，明显比暗底亮 —— 三角就是「长」在它上面 */
+/* ② 从环上长出来的 4 个正三角：底压在环上、尖朝外 */
+/* 外圈亮晕 */
+/* 外圈亮带：参考图在 1.50–1.72R 之间有一整圈 lum≈120 的亮带，
+   不是一条细线。这里用加粗 + 模糊的描边做出那道带子。 */
+/* 白环外侧那道亮蓝硬边 */
+/* 厚暖白环：实测 lum≈233 */
+/* 淡紫蓝带：实测 lum≈195 */
+/* 白环内侧的高光细边 */
+/* 亮青带：参考图里这圈明显比淡紫带更蓝更亮，别画丢了 */
+/* 中心宝蓝圆盘 */
+/* 偏右下的大白点：带一圈冷光，像在发光 */
+
+/* ================================ 器件感 */
+#zzz-hdd-hud .fairy-scan {
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(to bottom, rgba(190, 220, 255, 0.014) 0 1px, transparent 1px 6px);
+}
+
+/* 四角 HUD 边框：贴边，永远不压在控件上 */
+#zzz-hdd-hud .fairy-frame {
+  position: absolute;
+  inset: 8px;
+  color: rgba(63, 147, 217, 0.28);
+}
+#zzz-hdd-hud .fairy-frame i {
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  border: 1px solid currentColor;
+}
+#zzz-hdd-hud .fairy-frame i:nth-child(1) {
+  top: 0;
+  left: 0;
+  border-right: 0;
+  border-bottom: 0;
+}
+#zzz-hdd-hud .fairy-frame i:nth-child(2) {
+  top: 0;
+  right: 0;
+  border-left: 0;
+  border-bottom: 0;
+}
+#zzz-hdd-hud .fairy-frame i:nth-child(3) {
+  bottom: 0;
+  left: 0;
+  border-right: 0;
+  border-top: 0;
+}
+#zzz-hdd-hud .fairy-frame i:nth-child(4) {
+  bottom: 0;
+  right: 0;
+  border-left: 0;
+  border-top: 0;
+}
+
+/* ================================================================
+ * 让它动起来
+ *
+ * 说明：动图在传输时被压平成单帧了，所以我看到的只有静图。这里实现的
+ * 是这类 H.D.D. 徽记通行的四段运动，全部可单独关掉：
+ *   1. 呼吸 —— 整枚徽记与他外发光缓慢明暗（4.8s）
+ *   2. 转叶 —— 暗环里那 4 个三角楔块缓慢自转（28s，几乎察觉不到但会「活」）
+ *   3. 瞳孔 —— 白点轻微呼吸 + 游移（5.6s）
+ *   4. 掠光 —— 一道浅光扫过整枚徽记（7s）
+ * ================================================================ */
+
+/* 表面纹理：位图本身已带扫描质感，这里只补一点点，别叠双份 */
+#zzz-hdd-hud .fairy-emblem::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background-image: repeating-linear-gradient(to bottom, rgba(220, 240, 255, 0.02) 0 1px, transparent 1px 2px);
+  mix-blend-mode: overlay;
+  opacity: 0.2;
+  pointer-events: none;
+}
+
+/* ================================ 动效（三层）
+ *   .fairy-layer--outer  暗环 + 四个三角 + 光晕  → 旋转
+ *   .fairy-layer--core   紫带 / 青带 / 中心盘 / 眼珠 → 呼吸，往外涨
+ *   .fairy-layer--ring   白环本体               → **不动**，是锚点
+ *
+ * 白环不动、core 放大，而且 ring 在 DOM 里排在 core 之后（压在上面），
+ * 所以 core 涨出去的部分被白环裁掉：紫带闭合成缝、青带贴到白环内沿，
+ * 而白环与更外圈的暗环一动不动 —— 永远不可能"超出外一圈"。
+ * ================================================================ */
+
+/* 外壳：转。18s 一圈 */
+#zzz-hdd-hud .fairy-layer--outer {
+  animation: fairy-spin 18s linear infinite;
+  will-change: transform;
+}
+@keyframes fairy-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* 内芯：呼吸。1 → 1.32，涨出去的部分被白环盖住 */
+#zzz-hdd-hud .fairy-layer--core {
+  animation: fairy-breathe 5.5s ease-in-out infinite;
+  will-change: transform;
+}
+@keyframes fairy-breathe {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.32);
+  }
+}
+
+/* 白环：锚点，只负责遮住 core 涨出来的部分 */
+#zzz-hdd-hud .fairy-layer--ring {
+  animation: none;
+}
+
+/* 外发光跟着呼吸，幅度小 */
+#zzz-hdd-hud .fairy-bloom {
+  animation: fairy-glow 5.5s ease-in-out infinite;
+}
+@keyframes fairy-glow {
+  0%,
+  100% {
+    opacity: 0.7;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+/* 尊重系统的「减少动态效果」 */
+@media (prefers-reduced-motion: reduce) {
+  #zzz-hdd-hud .fairy-layer,
+  #zzz-hdd-hud .fairy-bloom {
+    animation: none;
+  }
+}
+
+/* ================================ 品牌标记（左上角）
+   把应用自带的 DeepSeek 图标换成静态大眼睛。
+   - 图标是位图裁出来的，不需要动效，所以这里不挂任何 animation；
+   - 用 object-fit 保证圆度，外加一点点暗底上的对比度补偿。
+   ================================================================ */
+.zzz-brand-mark {
+  display: block;
+  width: 38px;
+  height: 38px;
+  object-fit: contain;
+  border-radius: 50%;
+  flex: 0 0 auto;
+  /* 图标提亮。不用 drop-shadow：filter 会按元素盒绘制，透明边缘提亮后
+     会浮出一圈矩形光带，所以光晕交给文字那边，图标只提亮。 */
+  filter: brightness(1.45) saturate(1.1);
+}
+
+/* 品牌行：原图标与字标被 visibility:hidden 遮住，这里叠上自己的 */
+[data-zzz-brand] {
+  position: relative;
+}
+.zzz-brand-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  overflow: hidden; /* 侧栏收成 0 高的那一帧，别让 38px 的图标从行外溢出来 */
+  pointer-events: none;
+}
+.zzz-brand-name {
+  font: 650 20px/1 ui-sans-serif, 'Segoe UI', system-ui, sans-serif;
+  letter-spacing: 0.02em;
+  color: #ffffff;
+  text-shadow: 0 0 6px rgba(200, 232, 255, 0.9), 0 0 18px rgba(96, 168, 245, 0.6);
+  white-space: nowrap;
+}
+
+
+/* 品牌：把官方字标从第一帧就藏掉。
+   官方结构（dsh-client-ui-sidebar / SidebarRoot）：
+
+     div._logoRow
+       ├ button._brand          ← 热区是"新建会话"，按钮本身必须留着
+       │   └ span._brandIdentity
+       │       ├ span._brandMark  → 官方鱼标 svg
+       │       └ span._brandName  → DeepSeek 字标 svg
+       └ button._iconButton._toggle   ← 折叠开关，里面那枚 svg 就是按钮图案
+
+   所以只藏 _brandIdentity：它同时包住鱼标和字标，又不在折叠按钮内部。
+   —— 早先的规则藏了 logoRow 下所有 svg / img，折叠按钮的图标正好中招，
+      于是"按钮还在，图案没了"；而 React 重新挂载品牌行时那条 JS 隐藏
+      还没来得及补上，字标就闪了一帧。CSS 兜底没有这一帧问题。 */
+[class*="_brandIdentity"],
+[class*="_brand"] > svg,
+[class*="_brand"] > img:not(.zzz-brand-mark) {
+  visibility: hidden !important;
+}
+/* 品牌文字块：名字 + 一行小字（全名） */
+.zzz-brand-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  /* 品牌行高 40px：20 + 间距 + 11 = 38，刚好装下且不压「新对话」 */
+  gap: 7px;
+  line-height: 1;
+}
+.zzz-brand-sub {
+  font: 600 10px/1.1 ui-sans-serif, 'Segoe UI', system-ui, sans-serif;
+  letter-spacing: 0.06em;
+  color: #eaf4ff;
+  white-space: nowrap;
+  text-shadow: 0 0 6px rgba(170, 215, 255, 0.8), 0 0 14px rgba(80, 150, 230, 0.5);
+}
+/* ================================ 示波器扫线（薄雾版）
+   一片很淡的光带自上而下降落。为了不显眼，这里刻意把亮度压到接近
+   肉眼阈值：峰值 alpha 只有 0.02，同时把厚度拉到 200px —— 
+   单位面积上的亮度更低，读起来是"背景在缓缓呼吸"，不是"一道光扫过"。
+   节奏：24s 一轮，前 60%（约 14s）落下，其余静止。
+   ================================================================ */
+#zzz-hdd-hud .fairy-sky::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 200px;
+  background: linear-gradient(
+    to bottom,
+    rgba(90, 160, 230, 0) 0%,
+    rgba(90, 160, 230, 0.005) 48%,
+    rgba(120, 190, 255, 0.012) 78%,
+    rgba(170, 214, 255, 0.022) 95%,
+    rgba(205, 236, 255, 0) 100%
+  );
+  mask-image: linear-gradient(to right, transparent 0%, #000 24%, #000 76%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 24%, #000 76%, transparent 100%);
+  opacity: 0;
+  animation: fairy-beam 24s linear infinite;
+  will-change: transform, opacity;
+  pointer-events: none;
+}
+
+#zzz-hdd-hud .fairy-sky::before {
+  content: none;
+}
+
+@keyframes fairy-beam {
+  0% {
+    transform: translateY(-200px);
+    opacity: 0;
+  }
+  5% {
+    transform: translateY(-200px);
+    opacity: 1;
+  }
+  60% {
+    transform: translateY(100vh);
+    opacity: 1;
+  }
+  64% {
+    transform: translateY(100vh);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(100vh);
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #zzz-hdd-hud .fairy-sky::after {
+    animation: none;
+    opacity: 0;
+  }
+}
